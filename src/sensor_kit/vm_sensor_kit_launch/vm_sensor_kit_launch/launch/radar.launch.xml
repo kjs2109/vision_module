@@ -1,0 +1,43 @@
+<launch>
+  <arg name="launch_driver" default="true"/>
+
+  <group if="$(var launch_driver)">
+    <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/radar/millimeter_continental_ars408.launch.xml"/>
+  </group>
+
+  <!--<arg name="interface" default="can2" />
+
+  <arg name="input/frame" default="from_can_bus" />
+  <arg name="input/imu" default="/sensing/imu/filtered_data" />
+  <arg name="input/twist" default="/sensing/vehicle_velocity_converter/twist_with_covariance" />
+  <arg name="input/radar_objects" default="/sensing/radar/radar_objects" />
+  <arg name="output/scan" default="scan" />
+  <arg name="publish_radar_track" default="true" />
+  <arg name="publish_radar_scan" default="true" />
+  <arg name="output_frame" default="radar_link" />
+
+  <group if="$(var launch_driver)">
+    <include file="$(find-pkg-share pe_ars408_ros)/launch/continental_ars408_socket_can.launch.xml">
+      <arg name="interface" value="$(var interface)" />
+    </include>
+  </group>
+  
+  <group>
+    <include file="$(find-pkg-share radar_tracks_noise_filter)/launch/radar_tracks_noise_filter.launch.xml">
+      <arg name="input/tracks" value="$(var input/radar_objects)"/>
+      <arg name="output/noise_tracks" value="output/noise_tracks"/>
+      <arg name="output/filtered_tracks" value="output/filtered_tracks"/>
+    </include>
+  </group>
+
+  <group>
+    <include file="$(find-pkg-share radar_tracks_msgs_converter)/launch/radar_tracks_msgs_converter.launch.xml">
+      <arg name="input/radar_objects" value="output/filtered_tracks" />
+      <arg name="input/odometry" value="/localization/kinematic_state" />
+      <arg name="output/radar_detected_objects" value="output/detected_objects" />
+      <arg name="output/radar_tracked_objects" value="output/tracked_objects" />
+      <arg name="use_twist_compensation" value="true" />
+    </include>
+  </group>-->
+
+</launch>

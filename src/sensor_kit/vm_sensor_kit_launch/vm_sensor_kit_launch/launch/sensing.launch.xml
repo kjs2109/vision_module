@@ -1,0 +1,57 @@
+<launch>
+  <arg name="launch_driver" default="true" description="do launch driver"/>
+
+  <arg name="launch_camera"             default="true"/>
+  <arg name="launch_lidar"              default="true"/>
+  <arg name="launch_gnss"               default="false"/>
+  <arg name="launch_imu"                default="false"/>
+  <arg name="launch_radar"              default="false"/>
+  
+  <group>
+    <!-- camera -->
+    <group if="$(var launch_camera)">
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/camera.launch.xml">
+        <arg name="launch_driver" value="$(var launch_driver)" />
+      </include>
+    </group>
+
+    <!-- lidar -->
+    <group if="$(var launch_lidar)">
+      <push-ros-namespace namespace="lidar"/>
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/lidar.launch.xml">
+        <arg name="launch_driver" value="$(var launch_driver)"/>
+      </include>
+    </group>
+
+    <!-- gnss -->
+    <group if="$(var launch_gnss)">
+      <push-ros-namespace namespace="gnss"/>
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/gnss.launch.xml"/>
+        <arg name="launch_driver" value="$(var launch_driver)"/>
+      </include>
+    </group>
+
+    <!-- imu -->
+    <group if="$(var launch_imu)">
+      <push-ros-namespace namespace="imu"/>
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/imu.launch.xml"/>
+        <arg name="launch_driver" value="$(var launch_driver)"/>
+      </include>
+    </group>
+
+    <!-- radar -->
+    <group if="$(var launch_radar)">
+      <push-ros-namespace namespace="radar"/>
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/radar.launch.xml"/>
+        <arg name="launch_driver" value="$(var launch_driver)"/>
+      </include>
+    </group>
+
+    <!-- Vehicle Velocity Converter  -->
+    <!-- <include file="$(find-pkg-share autoware_vehicle_velocity_converter)/launch/vehicle_velocity_converter.launch.xml">
+      <arg name="input_vehicle_velocity_topic" value="/vehicle/status/velocity_status"/>
+      <arg name="output_twist_with_covariance" value="/sensing/vehicle_velocity_converter/twist_with_covariance"/>
+    </include> -->
+  </group>
+
+</launch>
