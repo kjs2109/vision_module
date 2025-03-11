@@ -2,6 +2,7 @@
 
 <launch>
     <arg name="active_rviz" default="true"/> 
+    <arg name="rviz_config" default="$(find-pkg-share vm_vehicle_launch)/rviz/vehicle_visualizer.rviz"/>
     <arg name="vehicle_model" default="vm_vehicle"/> 
     <arg name="sensor_model" default="vm_sensor_kit"/> 
     <arg name="config_dir" default="$(find-pkg-share $(var sensor_model)_description)/config"/> 
@@ -12,6 +13,6 @@
     </node>
 
     <group if="$(var active_rviz)">
-        <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share $(var vehicle_model)_launch)/rviz/vehicle_visualizer.rviz"/>
+        <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(var rviz_config)"/>
     </group>
 </launch>

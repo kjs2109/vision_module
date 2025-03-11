@@ -4,9 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /sensing1
-        - /sensing1/lidar1
-        - /sensing1/lidar1/PointCloud21
+        - /RobotModel1
       Splitter Ratio: 0.5
     Tree Height: 222
   - Class: rviz_common/Selection
@@ -182,7 +180,7 @@ Visualization Manager:
                 Filter size: 10
                 History Policy: Keep Last
                 Reliability Policy: Reliable
-                Value: /lidar/rslidar_sdk/rs/points
+                Value: /sensing/lidar/top/pointcloud_raw
               Use Fixed Frame: true
               Use rainbow: true
               Value: true
@@ -202,7 +200,7 @@ Visualization Manager:
                 Durability Policy: Volatile
                 History Policy: Keep Last
                 Reliability Policy: Reliable
-                Value: /camera/logitech_camera/image_raw
+                Value: /sensing/camera/camera1/image_raw
               Value: true
             - Class: rviz_default_plugins/Image
               Enabled: true
@@ -216,7 +214,7 @@ Visualization Manager:
                 Durability Policy: Volatile
                 History Policy: Keep Last
                 Reliability Policy: Reliable
-                Value: /camera/camera_driver/image_raw
+                Value: /sensing/camera/camera_driver/image_raw
               Value: true
           Enabled: true
           Name: camera
@@ -268,25 +266,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 10
+      Distance: 5.562342643737793
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 1.8230924606323242
+        Y: 0.6824377179145813
+        Z: 1.4208837747573853
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7853981852531433
+      Pitch: 0.3653985857963562
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.7853981852531433
+      Yaw: 1.555402398109436
     Saved: ~
 Window Geometry:
   Displays:

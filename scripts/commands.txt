@@ -1,0 +1,18 @@
+# [빌드] 
+$ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+# [compressed image 복원] 
+$ ros2 run image_transport republish compressed raw --ros-args --remap in/compressed:=/sensing/camera/camera1/image_compressed --remap out:=/sensing/camera/camera1/image_uncompressed
+
+# [carla-autoware ros 브릿지]  
+- 가상환경 활성화 
+$ source /home/k/carla-0915/carla-0915-env/bin/activate
+- 카를라 서버 
+$ ./CarlaUE.sh 
+- autoware-carla ros bridge 
+$ ros2 launch autoware_carla_interface autoware_carla_interface.launch.xml
+- ego vehicle 생성 및 manual_control 
+$ python scripts/ego_manual_control.py 
+
+# [vehicle 및 sensor_kit 시각화]  
+ros2 launch vm_vehicle_launch vehicle_visualizer.launch.xml sensor_model:=vm_sim_sensor_kit

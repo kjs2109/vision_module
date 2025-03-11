@@ -1,12 +1,29 @@
-from launch import LaunchDescription
+from launch.actions import OpaqueFunction
+from launch import LaunchDescription, LaunchContext
 from launch_ros.actions import Node
-from ament_index_python.packages import get_package_share_directory
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+
+def launch_setup(context, *args, **kwargs):
+    namespace = LaunchConfiguration('namespace').perform(context) 
+    return [
+        Node(
+            namespace=namespace,
+            package='rslidar_sdk',
+            executable='rslidar_sdk_node',
+            remappings=[(f'{namespace}/rs/points', f'{namespace}/top/pointcloud_raw')],
+            output='screen'
+        )
+    ]
 
 def generate_launch_description():
-
-    # rviz_config=get_package_share_directory('rslidar_sdk')+'/rviz/rviz2.rviz'
+    namespace_arg = DeclareLaunchArgument(
+        'namespace',
+        default_value='/sensing/lidar',
+        description='Namespace for the rslidar_sdk node'
+    )
 
     return LaunchDescription([
-        Node(namespace='rslidar_sdk', package='rslidar_sdk', executable='rslidar_sdk_node', output='screen'),
-        # Node(namespace='rviz2', package='rviz2', executable='rviz2', arguments=['-d',rviz_config])
+        namespace_arg,
+        OpaqueFunction(function=launch_setup) 
     ])
