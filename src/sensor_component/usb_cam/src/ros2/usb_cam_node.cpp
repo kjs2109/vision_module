@@ -34,7 +34,7 @@
 #include "usb_cam/usb_cam_node.hpp"
 #include "usb_cam/utils.hpp"
 
-const char BASE_TOPIC_NAME[] = "logitech_camera/image_raw";
+const char BASE_TOPIC_NAME[] = "image_raw";
 
 namespace usb_cam
 {

@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="sensor_kit_macro" params="*origin parent:=base_link">
+
+    <!-- include xacro file -->
+
+    <!-- define args -->
     <xacro:arg name="gpu" default="false"/>
     <xacro:arg name="config_dir" default="$(find vm_sensor_kit_description)/config"/>
 
@@ -20,7 +24,7 @@
     <xacro:property name="calibration" value="${xacro.load_yaml('$(arg config_dir)/sensor_kit_calibration.yaml')}"/>
     
     <link name="camera_front" />
-    <link name="camera_front_right" />
+    <link name="camera1" />
     <link name="gnss" />
     <link name="rs16_top_base_link" />
     <link name="front_radar" />
@@ -52,16 +56,16 @@
              ${calibration['sensor_kit_base_link']['camera_front']['yaw']}" />
     </joint>
 
-    <joint name="camera_front_right_joint" type="fixed">
+    <joint name="camera1_joint" type="fixed">
       <parent link="sensor_kit_base_link" />
-      <child link="camera_front_right" />
+      <child link="camera1" />
       <origin 
-        xyz="${calibration['sensor_kit_base_link']['camera_front_right']['x']} 
-             ${calibration['sensor_kit_base_link']['camera_front_right']['y']} 
-             ${calibration['sensor_kit_base_link']['camera_front_right']['z']}" 
-        rpy="${calibration['sensor_kit_base_link']['camera_front_right']['roll']} 
-             ${calibration['sensor_kit_base_link']['camera_front_right']['pitch']} 
-             ${calibration['sensor_kit_base_link']['camera_front_right']['yaw']}" />
+        xyz="${calibration['sensor_kit_base_link']['camera1']['x']} 
+             ${calibration['sensor_kit_base_link']['camera1']['y']} 
+             ${calibration['sensor_kit_base_link']['camera1']['z']}" 
+        rpy="${calibration['sensor_kit_base_link']['camera1']['roll']} 
+             ${calibration['sensor_kit_base_link']['camera1']['pitch']} 
+             ${calibration['sensor_kit_base_link']['camera1']['yaw']}" />
     </joint>
 
     <!-- gnss -->

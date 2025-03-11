@@ -61,7 +61,6 @@ def generate_launch_description():
 
     parser = argparse.ArgumentParser(description='usb_cam demo')
     parser.add_argument('-n', '--node-name', dest='node_name', type=str, help='name for device', default='usb_cam')
-
     camera_nodes = [
         Node(
             package='usb_cam', executable='usb_cam_node_exe', output='screen',

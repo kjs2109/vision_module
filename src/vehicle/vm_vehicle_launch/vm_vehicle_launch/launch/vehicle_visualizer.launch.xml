@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
+    <arg name="active_rviz" default="true"/> 
     <arg name="vehicle_model" default="vm_vehicle"/> 
     <arg name="sensor_model" default="vm_sensor_kit"/> 
     <arg name="config_dir" default="$(find-pkg-share $(var sensor_model)_description)/config"/> 
@@ -10,5 +11,7 @@
         <param name="robot_description" value="$(command 'xacro $(var xacro_file) vehicle_model:=$(var vehicle_model) sensor_model:=$(var sensor_model) config_dir:=$(var config_dir)')"/>
     </node>
 
-    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share $(var vehicle_model)_launch)/rviz/vehicle_visualizer.rviz"/>
+    <group if="$(var active_rviz)">
+        <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share $(var vehicle_model)_launch)/rviz/vehicle_visualizer.rviz"/>
+    </group>
 </launch>

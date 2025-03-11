@@ -7,6 +7,8 @@
   <arg name="launch_imu"                default="false"/>
   <arg name="launch_radar"              default="false"/>
   
+  <arg name="visualize"                 default="false"/>
+  
   <group>
     <!-- camera -->
     <group if="$(var launch_camera)">
@@ -26,7 +28,7 @@
     <!-- gnss -->
     <group if="$(var launch_gnss)">
       <push-ros-namespace namespace="gnss"/>
-      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/gnss.launch.xml"/>
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/gnss.launch.xml">
         <arg name="launch_driver" value="$(var launch_driver)"/>
       </include>
     </group>
@@ -34,7 +36,7 @@
     <!-- imu -->
     <group if="$(var launch_imu)">
       <push-ros-namespace namespace="imu"/>
-      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/imu.launch.xml"/>
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/imu.launch.xml">
         <arg name="launch_driver" value="$(var launch_driver)"/>
       </include>
     </group>
@@ -42,16 +44,26 @@
     <!-- radar -->
     <group if="$(var launch_radar)">
       <push-ros-namespace namespace="radar"/>
-      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/radar.launch.xml"/>
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/radar.launch.xml">
         <arg name="launch_driver" value="$(var launch_driver)"/>
       </include>
     </group>
 
+
+    <!-- rviz2 --> 
+    <group if="$(var visualize)">
+      <include file="$(find-pkg-share vm_vehicle_launch)/launch/vehicle_visualizer.launch.xml">
+        <arg name="active_rviz" value="false"/>
+      </include>
+      <node name="tf2_ros" pkg="tf2_ros" exec="static_transform_publisher" args="0 0 0 0 0 0 rs16_top_base_link rslidar" />
+      <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_sensor_kit_launch)/rviz/sensing.rviz"/>
+    </group>
+
     <!-- Vehicle Velocity Converter  -->
-    <!-- <include file="$(find-pkg-share autoware_vehicle_velocity_converter)/launch/vehicle_velocity_converter.launch.xml">
+    <include file="$(find-pkg-share autoware_vehicle_velocity_converter)/launch/vehicle_velocity_converter.launch.xml">
       <arg name="input_vehicle_velocity_topic" value="/vehicle/status/velocity_status"/>
       <arg name="output_twist_with_covariance" value="/sensing/vehicle_velocity_converter/twist_with_covariance"/>
-    </include> -->
+    </include>
   </group>
 
 </launch>

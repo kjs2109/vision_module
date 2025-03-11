@@ -29,7 +29,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: PointCloud2
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -106,21 +106,19 @@ Visualization Manager:
         All Enabled: false
         base_link:
           Value: true
+        camera_front:
+          Value: true
+        camera_front_right:
+          Value: true
+        front_radar:
+          Value: true
+        gnss:
+          Value: true
+        rear_radar:
+          Value: true
+        rs16_top_base_link:
+          Value: true
         sensor_kit_base_link:
-          Value: true
-        tamagawa/imu_link:
-          Value: true
-        tamagawa/imu_link_changed:
-          Value: true
-        traffic_light_left_camera/camera_link:
-          Value: true
-        traffic_light_left_camera/camera_optical_link:
-          Value: true
-        velodyne_top:
-          Value: true
-        velodyne_top_base_link:
-          Value: true
-        velodyne_top_changed:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -130,16 +128,18 @@ Visualization Manager:
       Tree:
         base_link:
           sensor_kit_base_link:
-            tamagawa/imu_link:
-              tamagawa/imu_link_changed:
-                {}
-            traffic_light_left_camera/camera_link:
-              traffic_light_left_camera/camera_optical_link:
-                {}
-            velodyne_top_base_link:
-              velodyne_top:
-                velodyne_top_changed:
-                  {}
+            camera_front:
+              {}
+            camera_front_right:
+              {}
+            front_radar:
+              {}
+            gnss:
+              {}
+            rear_radar:
+              {}
+            rs16_top_base_link:
+              {}
       Update Interval: 0
       Value: true
     - Alpha: 0.20000000298023224
@@ -165,34 +165,34 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        camera_front:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_front_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        front_radar:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        gnss:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rear_radar:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rs16_top_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         sensor_kit_base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        tamagawa/imu_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        traffic_light_left_camera/camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        traffic_light_left_camera/camera_optical_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        velodyne_top:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        velodyne_top_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -278,34 +278,34 @@ Visualization Manager:
                   Show Axes: false
                   Show Trail: false
                   Value: true
+                camera_front:
+                  Alpha: 1
+                  Show Axes: false
+                  Show Trail: false
+                camera_front_right:
+                  Alpha: 1
+                  Show Axes: false
+                  Show Trail: false
+                front_radar:
+                  Alpha: 1
+                  Show Axes: false
+                  Show Trail: false
+                gnss:
+                  Alpha: 1
+                  Show Axes: false
+                  Show Trail: false
+                rear_radar:
+                  Alpha: 1
+                  Show Axes: false
+                  Show Trail: false
+                rs16_top_base_link:
+                  Alpha: 1
+                  Show Axes: false
+                  Show Trail: false
                 sensor_kit_base_link:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                tamagawa/imu_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                traffic_light_left_camera/camera_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                traffic_light_left_camera/camera_optical_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                velodyne_top:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                velodyne_top_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
               Mass Properties:
                 Inertia: false
                 Mass: false
@@ -364,25 +364,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 77.75088500976562
+      Distance: 7.78741455078125
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.2014741897583008
-        Y: -0.86805659532547
-        Z: -0.35934901237487793
+        X: 0.7046992182731628
+        Y: -1.0662574768066406
+        Z: 0.08155692368745804
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6497968435287476
+      Pitch: 0.2397971749305725
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.2003979682922363
+      Yaw: 1.5303974151611328
     Saved: ~
 Window Geometry:
   Displays:

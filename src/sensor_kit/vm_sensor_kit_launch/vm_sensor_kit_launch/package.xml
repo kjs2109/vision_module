@@ -3,7 +3,7 @@
 <package format="3">
   <name>vm_sensor_kit_launch</name>
   <version>0.1.0</version>
-  <description>The pixkit_sensor_kit_launch package</description>
+  <description>The vm_sensor_kit_launch package</description>
   <maintainer email="dutjdgns@gmail.com">Seonghun Yeo</maintainer>
   <license>Apache License 2.0</license>
 

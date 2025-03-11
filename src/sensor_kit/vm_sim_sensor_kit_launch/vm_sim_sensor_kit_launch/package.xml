@@ -3,7 +3,7 @@
 <package format="3">
   <name>vm_sim_sensor_kit_launch</name>
   <version>0.1.0</version>
-  <description>The pixkit_sim_sensor_kit_launch package</description>
+  <description>The vm_sim_sensor_kit_launch package</description>
   <maintainer email="piotr.jaroszek@robotec.ai">Piotr Jaroszek</maintainer>
   <license>Apache License 2.0</license>
 

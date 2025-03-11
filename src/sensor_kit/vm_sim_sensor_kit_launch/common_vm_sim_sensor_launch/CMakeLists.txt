@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(common_pixkit_sim_sensor_launch)
+project(common_vm_sim_sensor_launch)
 
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
