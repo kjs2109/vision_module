@@ -15,4 +15,7 @@ $ ros2 launch autoware_carla_interface autoware_carla_interface.launch.xml
 $ python scripts/ego_manual_control.py 
 
 # [vehicle 및 sensor_kit 시각화]  
-ros2 launch vm_vehicle_launch vehicle_visualizer.launch.xml sensor_model:=vm_sim_sensor_kit
+ros2 launch vm_vehicle_launch vehicle_visualizer.launch.xml sensor_model:=vm_sim_sensor_kit 
+
+# [pcd 맵 및 lanelet 맵 시각화] 
+ros2 launch tier4_map_launch map.launch.xml active_rviz:=true
