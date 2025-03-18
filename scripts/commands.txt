@@ -18,4 +18,15 @@ $ python scripts/ego_manual_control.py
 ros2 launch vm_vehicle_launch vehicle_visualizer.launch.xml sensor_model:=vm_sim_sensor_kit 
 
 # [pcd 맵 및 lanelet 맵 시각화] 
-ros2 launch tier4_map_launch map.launch.xml active_rviz:=true
+ros2 launch tier4_map_launch map.launch.xml active_rviz:=true 
+
+# [캘리브레이션] 
+# - 카메라 내부 파라미터 
+ros2 launch intrinsic_camera_calibrator calibrator.launch.xml 
+
+# 라이다 
+
+# 카메라-라이다 
+ros2 bag play /media/k/part11/vision_module/bags/camera_lidar/camera_lidar.db3 -l
+ros2 run sensor_calibration_manager sensor_calibration_manager 
+
