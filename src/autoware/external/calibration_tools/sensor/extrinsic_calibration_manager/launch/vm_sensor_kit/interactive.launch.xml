@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <let name="sensor_model" value="vm_sensor_kit"/>
+  <arg name="camera_name"/>
+  <arg name="rviz" default="true"/>
+  <!-- <arg name="use_concatenated_pointcloud" default="true"/> -->
+
+  <group>
+    <push-ros-namespace namespace="sensor_kit"/>
+    <include file="$(find-pkg-share extrinsic_calibration_manager)/launch/$(var sensor_model)/interactive_sensor_kit.launch.xml" if="$(var rviz)">
+      <arg name="camera_name" value="$(var camera_name)"/>
+    </include>
+  </group>
+</launch>
