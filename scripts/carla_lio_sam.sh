@@ -18,4 +18,4 @@ gnome-terminal -- bash -c "source ~/carla-0915/carla-0915-env/bin/activate && py
 sleep 10
 
 echo "launch lio_sam" 
-gnome-terminal -- bash -c "ros2 launch lio_sam run.launch.py params_file:=/media/k/part11/vision_module/src/autoware/external/lio_sam/config/params_carla.yaml"
+gnome-terminal -- bash -c "ource ../install/setup.bash && ros2 launch lio_sam run.launch.py params_file:=/media/k/part11/vision_module/src/autoware/external/lio_sam/config/params_carla.yaml"

@@ -9,7 +9,7 @@ sleep 10
 # gnome-terminal -- bash -c "source ../install/setup.bash && ros2 launch autoware_carla_interface carla_sensing_visualizer.launch.xml; exec bash"
 
 echo "carla-autowrare interface" 
-gnome-terminal -- bash -c "source ../install/setup.bash && ros2 launch autoware_carla_interface autoware_carla_interface.launch.xml; exec bash"
+gnome-terminal -- bash -c "source ../install/setup.bash && ros2 launch autoware_carla_interface autoware_carla_interface.launch.xml carla_map:=Town03; exec bash"
 
 
 echo "Starting Ego Vehicle..."
@@ -18,4 +18,4 @@ gnome-terminal -- bash -c "source ~/carla-0915/carla-0915-env/bin/activate && py
 sleep 10
 
 echo "launch kiss-icp" 
-gnome-terminal -- bash -c "source /home/k/my_works/kiss-icp/install/setup.bash && ros2 launch kiss_icp odometry.launch.py topic:=/sensing/lidar/concatenated/pointcloud; exec bash"
+gnome-terminal -- bash -c "source ../install/setup.bash && ros2 launch kiss_icp odometry.launch.py topic:=/sensing/lidar/concatenated/pointcloud invert_odom_tf:=True; exec bash"
