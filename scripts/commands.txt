@@ -18,7 +18,7 @@ $ python scripts/ego_manual_control.py
 ros2 launch vm_vehicle_launch vehicle_visualizer.launch.xml sensor_model:=vm_sim_sensor_kit 
 
 # [pcd 맵 및 lanelet 맵 시각화] 
-ros2 launch tier4_map_launch map.launch.xml active_rviz:=true 
+ros2 launch tier4_map_launch map.launch.xml active_rviz:=true map_folder:=/media/k/part11/vision_module/campus_map/campus_map_v2
 
 # [캘리브레이션] 
 # - 카메라 내부 파라미터 
@@ -30,3 +30,13 @@ ros2 launch intrinsic_camera_calibrator calibrator.launch.xml
 ros2 bag play /media/k/part11/vision_module/bags/camera_lidar/camera_lidar.db3 -l
 ros2 run sensor_calibration_manager sensor_calibration_manager 
 
+# interactive camera-lidar calibration 
+ros2 launch extrinsic_calibration_manager calibration.launch.xml mode:=interactive sensor_model:=vm_sensor_kit vehicle_model:=vm_vehicle camera_name:=camera1
+
+
+rqt_runtime_monitor 등에서 /diagnostics 토픽을 구독하면 다음과 같이 안정성 문제를 실시간으로 확인 가능
+
+
+# [맵핑 - lio_sam] 
+ros2 launch lio_sam run.launch.py params_file:=/media/k/part11/vision_module/src/autoware/external/lio_sam/config/params_campus.yaml
+ros2 service call /save_local_map_service std_srvs/srv/Trigger {}
