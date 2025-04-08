@@ -2,22 +2,15 @@
 
   <arg name="active_rviz" default="false"/>
   <arg name="rviz_config" default="$(find-pkg-share tier4_map_launch)/rviz/map_rviz.rviz"/>
+  <arg name="map_folder" default="/media/k/part11/vision_module/campus_map/campus_map_v1"/>
 
   <!-- map files -->
-  <!-- <arg name="pointcloud_map_path"/>
-  <arg name="pointcloud_map_metadata_path"/>
-  <arg name="lanelet2_map_path"/>
-  <arg name="map_projector_info_path"/> -->
-  <arg name="pointcloud_map_path" default="/media/k/part11/vision_module/campus_map/campus_map_v1/pointcloud_map.pcd"/>
+  <arg name="pointcloud_map_path" default="$(var map_folder)/pointcloud_map.pcd"/>
   <arg name="pointcloud_map_metadata_path" default="/home/k/autoware_map/sample-map-planning/pointcloud_map_metadata.yaml"/>
-  <arg name="lanelet2_map_path" default="/media/k/part11/vision_module/campus_map/campus_map_v1/lanelet2_map.osm"/>
-  <arg name="map_projector_info_path" default="/media/k/part11/vision_module/campus_map/campus_map_v1/map_projector_info.yaml"/> 
+  <arg name="lanelet2_map_path" default="$(var map_folder)/lanelet2_map.osm"/>
+  <arg name="map_projector_info_path" default="$(var map_folder)/map_projector_info.yaml"/> 
 
   <!-- Parameter files -->
-  <!-- <arg name="pointcloud_map_loader_param_path"/>
-  <arg name="lanelet2_map_loader_param_path"/>
-  <arg name="map_tf_generator_param_path"/>
-  <arg name="map_projection_loader_param_path"/>  -->
   <arg name="pointcloud_map_loader_param_path" default="$(find-pkg-share autoware_map_loader)/config/pointcloud_map_loader.param.yaml"/>
   <arg name="lanelet2_map_loader_param_path" default="$(find-pkg-share autoware_map_loader)/config/lanelet2_map_loader.param.yaml"/>
   <arg name="map_tf_generator_param_path" default="$(find-pkg-share autoware_map_tf_generator)/config/map_tf_generator.param.yaml"/>

@@ -57,8 +57,7 @@ geometry_msgs::msg::Vector3 transform_vector3(
 namespace autoware::imu_corrector
 {
 ImuCorrector::ImuCorrector(const rclcpp::NodeOptions & options)
-: rclcpp::Node("imu_corrector", options),
-  output_frame_(declare_parameter<std::string>("base_link", "base_link"))
+: rclcpp::Node("imu_corrector", options), output_frame_(declare_parameter<std::string>("base_link", "base_link"))
 {
   transform_listener_ = std::make_shared<autoware::universe_utils::TransformListener>(this);
 

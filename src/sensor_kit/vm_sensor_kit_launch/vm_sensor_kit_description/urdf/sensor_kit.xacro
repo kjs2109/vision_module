@@ -29,6 +29,7 @@
     <link name="rs16_top_base_link" />
     <link name="front_radar" />
     <link name="rear_radar" />
+    <link name="imu_link" />
     
     <!-- lidar -->
     <joint name="rs16_top_base_link_joint" type="fixed">
@@ -82,6 +83,17 @@
     </joint>
 
     <!-- imu -->
+    <joint name="imu_link" type="fixed">
+      <parent link="sensor_kit_base_link" />
+      <child link="imu_link" />
+      <origin 
+        xyz="${calibration['sensor_kit_base_link']['imu_link']['x']} 
+             ${calibration['sensor_kit_base_link']['imu_link']['y']} 
+             ${calibration['sensor_kit_base_link']['imu_link']['z']}" 
+        rpy="${calibration['sensor_kit_base_link']['imu_link']['roll']} 
+             ${calibration['sensor_kit_base_link']['imu_link']['pitch']} 
+             ${calibration['sensor_kit_base_link']['imu_link']['yaw']}" />
+    </joint>
 
     <!-- millimeter wave radar -->
     <joint name="front_radar_joint" type="fixed">

@@ -5,6 +5,7 @@
   <arg name="param_file" default="$(find-pkg-share autoware_imu_corrector)/config/imu_corrector.param.yaml"/>
 
   <node pkg="autoware_imu_corrector" exec="imu_corrector_node" output="both">
+    <param name="base_link" value="imu_link"/>
     <remap from="input" to="$(var input_topic)"/>
     <remap from="output" to="$(var output_topic)"/>
     <param from="$(var param_file)"/>

@@ -1,0 +1,6 @@
+/**:
+  ros__parameters:
+    # output_frame: "base_link"
+    # message_timeout_sec: 0.2
+    output_frame: "imu_link"
+    message_timeout_sec: 2000000000.0

@@ -3,10 +3,13 @@
     use_sim_time: true
 
     # Topics
-    pointCloudTopic: "/sensing/lidar/concatenated/pointcloud"                   # Point cloud data
-    imuTopic: "/gnss/chc/imu"                        # IMU data
-    odomTopic: "odometry/imu"                    # IMU pre-preintegration odometry, same frequency as IMU
-    gpsTopic: "/gnss/fix"                    # GPS odometry topic from navsat, see module_navsat.launch file
+    pointCloudTopic: "/rslidar_points"                   # Point cloud data
+    imuTopic: "/gnss/chc/imu"                    # IMU data
+    gpsTopic: "/gnss/fix"                        # GPS odometry topic from navsat, see module_navsat.launch file
+    # pointCloudTopic: "/sensing/lidar/concatenated/pointcloud" # Point cloud data
+    # imuTopic: "/sensing/imu/imu_raw"                   # IMU data
+    # gpsTopic: "/gnss/fix"                              # GPS odometry topic from navsat, see module_navsat.launch file
+    odomTopic: "odometry/imu"                            # IMU pre-preintegration odometry, same frequency as IMU
     gpsOdomTopic: "/gps_odom"
     # Frames
     lidarFrame: "lidar_link"
@@ -21,8 +24,8 @@
     poseCovThreshold: 25.0                       # m^2, threshold for using GPS data
 
     # Export settings
-    savePCD: false                               # https://github.com/TixiaoShan/LIO-SAM/issues/3
-    savePCDDirectory: "/Downloads/LOAM/"         # in your home folder, starts and ends with "/". Warning: the code deletes "LOAM" folder then recreates it. See "mapOptimization" for implementation
+    savePCD: true                               # https://github.com/TixiaoShan/LIO-SAM/issues/3
+    savePCDDirectory: "~/Downloads/LOAM/"         # in your home folder, starts and ends with "/". Warning: the code deletes "LOAM" folder then recreates it. See "mapOptimization" for implementation
 
     # Sensor Settings
     sensor: robosense                               # lidar sensor type, either 'velodyne', 'ouster' or 'livox' or 'robosense'
@@ -34,12 +37,12 @@
     lidarMaxRange: 1000.0                        # default: 1000.0, maximum lidar range to be used
 
     # IMU Settings
-    # imuAccNoise: 3.9939570888238808e-03
-    # imuGyrNoise: 1.5636343949698187e-03
-    # imuAccBiasN: 6.4356659353532566e-05
-    # imuGyrBiasN: 3.5640318696367613e-05
-    imuAccNoise: 5.9215155351791055e-03
-    imuGyrNoise: 1.5059072284923697e-03
+    # imuAccNoise: 5.9215155351791055e-03
+    # imuGyrNoise: 1.5059072284923697e-03
+    # imuAccBiasN: 1.3379378640306186e-04
+    # imuGyrBiasN: 4.3430855283551206e-05
+    imuAccNoise: 5.9215155351791055e-02
+    imuGyrNoise: 1.5059072284923697e-02
     imuAccBiasN: 1.3379378640306186e-04
     imuGyrBiasN: 4.3430855283551206e-05
 

@@ -146,11 +146,8 @@ class carla_ros2_interface(object):
                 )
             elif sensor["type"] == "sensor.lidar.ray_cast":
                 if sensor["id"] in self.sensor_frequencies:
-                    # self.pub_lidar[sensor["id"]] = self.ros2_node.create_publisher(
-                    #     PointCloud2, f'/sensing/lidar/{sensor["id"]}/pointcloud', 10
-                    # )
                     self.pub_lidar[sensor["id"]] = self.ros2_node.create_publisher(
-                        PointCloud2, f'/sensing/lidar/concatenated/pointcloud', 10
+                        PointCloud2, "/sensing/lidar/concatenated/pointcloud", 10
                     )
                 else:
                     self.ros2_node.get_logger().info(
@@ -158,7 +155,7 @@ class carla_ros2_interface(object):
                     )
             elif sensor["type"] == "sensor.other.imu":
                 self.pub_imu = self.ros2_node.create_publisher(
-                    Imu, "/sensing/imu/tamagawa/imu_raw", 1
+                    Imu, "/sensing/imu/imu_raw", 1
                 )
             else:
                 self.ros2_node.get_logger().info(f'No Publisher for {sensor["type"]} Sensor')
@@ -199,8 +196,8 @@ class carla_ros2_interface(object):
             return
         self.publish_prev_times[id_] = datetime.datetime.now()
 
-        header = self.get_msg_header(frame_id="velodyne_top_changed")
         # header = self.get_msg_header(frame_id="rs16_top_base_link")
+        header = self.get_msg_header(frame_id="rs16_top_base_link_changed")
         fields = [
             PointField(name="x", offset=0, datatype=PointField.FLOAT32, count=1),
             PointField(name="y", offset=4, datatype=PointField.FLOAT32, count=1),
@@ -365,7 +362,7 @@ class carla_ros2_interface(object):
         self.publish_prev_times["imu"] = datetime.datetime.now()
 
         imu_msg = Imu()
-        imu_msg.header = self.get_msg_header(frame_id="tamagawa/imu_link_changed")
+        imu_msg.header = self.get_msg_header(frame_id="imu_link")
         imu_msg.angular_velocity.x = -carla_imu_measurement.gyroscope.x
         imu_msg.angular_velocity.y = carla_imu_measurement.gyroscope.y
         imu_msg.angular_velocity.z = -carla_imu_measurement.gyroscope.z

@@ -23,6 +23,5 @@ ament_auto_package(
   resource
   config
   src
-  rviz
 )
 ament_package()

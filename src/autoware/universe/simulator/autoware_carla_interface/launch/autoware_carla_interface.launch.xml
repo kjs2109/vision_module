@@ -6,6 +6,7 @@
     <arg name="ego_vehicle_role_name" default="ego_vehicle"/>
     <arg name="vehicle_type" default="vehicle.toyota.prius"/>
     <arg name="spawn_point" default="None" description="location of ego vehicle spawn (default is random), example = [0.2 , 4.1, 0.4, 0., 0., 0.]"/>
+    <!-- <arg name="carla_map" default="Town01"/> -->
     <arg name="carla_map" default="Town01"/>
     <arg name="sync_mode" default="True"/>
     <arg name="fixed_delta_seconds" default="0.05" description="Time step for CARLA, FPS=1/value"/>
@@ -43,8 +44,6 @@
       <remap from="~/output/actuation_cmd" to="$(var output_actuation_cmd)"/>
     </node>
 
-    <!-- Awsim configuration frame to CARLA frame -->
-    <node pkg="tf2_ros" exec="static_transform_publisher" name="velodyne_top" args="0 0 1 -1.5386 -0.015 0.001 /velodyne_top /velodyne_top_changed "/>
-    <node pkg="tf2_ros" exec="static_transform_publisher" name="imu" args="0 0 1 -3.10519265 -0.015 -3.14059265359 /tamagawa/imu_link /tamagawa/imu_link_changed "/>
+    <node pkg="tf2_ros" exec="static_transform_publisher" name="rs16_top_base_link" args="0 0 1.58 0 0 0 /rs16_top_base_link /rs16_top_base_link_changed "/>
   </group>
 </launch>

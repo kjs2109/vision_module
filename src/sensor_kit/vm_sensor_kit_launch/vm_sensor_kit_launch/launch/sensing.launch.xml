@@ -4,7 +4,7 @@
   <arg name="launch_camera"             default="true"/>
   <arg name="launch_lidar"              default="true"/>
   <arg name="launch_gnss"               default="false"/>
-  <arg name="launch_imu"                default="false"/>
+  <arg name="launch_imu"                default="true"/>
   <arg name="launch_radar"              default="false"/>
   
   <arg name="visualize"                 default="false"/>
@@ -37,7 +37,7 @@
 
     <!-- imu -->
     <group if="$(var launch_imu)">
-      <push-ros-namespace namespace="imu"/>
+      <!-- <push-ros-namespace namespace="imu"/> -->
       <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/imu.launch.xml">
         <arg name="launch_driver" value="$(var launch_driver)"/>
       </include>

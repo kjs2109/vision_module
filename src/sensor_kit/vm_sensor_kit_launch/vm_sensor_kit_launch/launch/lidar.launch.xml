@@ -1,7 +1,7 @@
 <launch>
   <arg name="namespace" default="/sensing/lidar"/>
   <arg name="launch_driver" default="true"/>
-  <arg name="use_concat_filter" default="true"/>
+  <arg name="use_concat_filter" default="false"/>
   <arg name="use_pointcloud_container" default="false" description="launch pointcloud container"/>
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
 
@@ -12,7 +12,7 @@
        <arg name="namespace" value="$(var namespace)"/> 
     </include>
 
-    <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/pointcloud_preprocessor.launch.py">
+    <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/pointcloud_preprocessor.launch.py" if="$(var launch_driver)">
       <arg name="base_frame" value="base_link"/>
       <arg name="use_intra_process" value="true"/>
       <arg name="use_multithread" value="true"/>

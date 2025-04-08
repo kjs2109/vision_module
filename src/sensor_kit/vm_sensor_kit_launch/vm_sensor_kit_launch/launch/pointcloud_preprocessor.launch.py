@@ -30,33 +30,14 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 
 def launch_setup(context, *args, **kwargs):
-    # set concat filter as a component
-    # concat_component_raw = ComposableNode(
-    #     package="pointcloud_preprocessor",
-    #     plugin="pointcloud_preprocessor::PointCloudConcatenateDataSynchronizerOusterComponent",
-    #     name="concatenate_data_raw",
-    #     remappings=[("output", "concatenated/pointcloud_raw")],
-    #     parameters=[
-    #         {
-    #             "input_topics": [
-    #                 "/sensing/lidar/top/ouster/points",
-    #                 # "/sensing/lidar/rear_right/ouster/points",
-    #                 # "/sensing/lidar/front_right/ouster/points",
-    #                 # "/sensing/lidar/rear_left/ouster/points",
-    #             ],
-    #             "output_frame": LaunchConfiguration("base_frame"),
-    #         }
-    #     ],
-    #     extra_arguments=[{"use_intra_process_comms": LaunchConfiguration("use_intra_process")}],
-    # )
-    # set crop box filter as a component
+    
     cropbox_component = ComposableNode(
         package="pointcloud_preprocessor",
-        plugin="pointcloud_preprocessor::CropBoxFilterComponent",
+        plugin="autoware::pointcloud_preprocessor::CropBoxFilterComponent",
         name="crop_box_filter",
         remappings=[
-            ("input", "/sensing/lidar/top/ouster/points"),
-            ("output", "concatenated/pointcloud"),
+            ("input", "/sensing/lidar/concatenated/pointcloud"),
+            ("output", "/localization/util/measurement_range/pointcloud"),  # /localization/util/
         ],
         parameters=[
             {
@@ -73,31 +54,54 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
+    voxel_grid_downsample_component = ComposableNode(
+        package="pointcloud_preprocessor",
+        plugin="autoware::pointcloud_preprocessor::VoxelGridDownsampleFilterComponent",
+        name="voxel_grid_downsample_filter",
+        remappings=[
+            ("input", "/localization/util/measurement_range/pointcloud"),
+            ("output", "/localization/util/voxel_grid_downsample/pointcloud"),  # /localization/util/
+        ],
+        parameters=[
+            {
+                "input_frame": LaunchConfiguration("base_frame"),
+                "output_frame": LaunchConfiguration("base_frame"),
+                "voxel_size_x": 0.3,
+                "voxel_size_y": 0.3,
+                "voxel_size_z": 0.1,
+            }
+        ],
+    )
+
+    random_downsample_component = ComposableNode(
+        package="pointcloud_preprocessor",
+        plugin="autoware::pointcloud_preprocessor::RandomDownsampleFilterComponent",
+        name="random_downsample_filter",
+        remappings=[
+            ("input", "/localization/util/voxel_grid_downsample/pointcloud"),
+            ("output", "/localization/util/downsample/pointcloud"),  # /localization/util/
+        ],
+        parameters=[
+            {
+                "input_frame": LaunchConfiguration("base_frame"),
+                "output_frame": LaunchConfiguration("base_frame"),
+                "sample_num": 1500,
+            }
+        ],
+    )
+
     # set container to run all required components in the same process
     container = ComposableNodeContainer(
         name=LaunchConfiguration("container_name"),
         namespace="",
         package="rclcpp_components",
         executable=LaunchConfiguration("container_executable"),
-        composable_node_descriptions=[],
-        condition=UnlessCondition(LaunchConfiguration("use_pointcloud_container")),
+        composable_node_descriptions=[cropbox_component, voxel_grid_downsample_component, random_downsample_component],
+        condition=IfCondition(LaunchConfiguration("use_pointcloud_container")),
         output="screen",
     )
 
-    target_container = (
-        container
-        if UnlessCondition(LaunchConfiguration("use_pointcloud_container")).evaluate(context)
-        else LaunchConfiguration("container_name")
-    )
-
-    # load concat or passthrough filter
-    concat_loader = LoadComposableNodes(
-        composable_node_descriptions=[cropbox_component],
-        target_container=target_container,
-        condition=IfCondition(LaunchConfiguration("use_concat_filter")),
-    )
-
-    return [container, concat_loader]
+    return [container,]
 
 
 def generate_launch_description():
@@ -107,22 +111,18 @@ def generate_launch_description():
         launch_arguments.append(DeclareLaunchArgument(name, default_value=default_value))
 
     add_launch_arg("base_frame", "base_link")
-    add_launch_arg("use_multithread", "False")
     add_launch_arg("use_intra_process", "False")
+    add_launch_arg("use_multithread", "False")
+    add_launch_arg("use_concat_filter", "True")
     add_launch_arg("use_pointcloud_container", "True")
     add_launch_arg("container_name", "pointcloud_preprocessor_container")
-    add_launch_arg("use_concat_filter", "True")
 
     set_container_executable = SetLaunchConfiguration(
-        "container_executable",
-        "component_container",
-        condition=UnlessCondition(LaunchConfiguration("use_multithread")),
+        "container_executable", "component_container", condition=UnlessCondition(LaunchConfiguration("use_multithread")),
     )
 
     set_container_mt_executable = SetLaunchConfiguration(
-        "container_executable",
-        "component_container_mt",
-        condition=IfCondition(LaunchConfiguration("use_multithread")),
+        "container_executable", "component_container_mt", condition=IfCondition(LaunchConfiguration("use_multithread")),
     )
 
     return launch.LaunchDescription(
