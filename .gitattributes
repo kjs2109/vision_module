@@ -1,1 +1,2 @@
 campus_map/GlobalMap.pcd filter=lfs diff=lfs merge=lfs -text
+*.pcd filter=lfs diff=lfs merge=lfs -text
