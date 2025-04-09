@@ -17,7 +17,7 @@
     <arg name="api" default="true" description="launch api"/>
     <arg name="control" default="false" description="launch control"/>  
     <arg name="planning" default="false" description="launch planning"/> 
-    <arg name="perception" default="false" description="launch perception"/> 
+    <arg name="perception" default="true" description="launch perception"/> 
     <arg name="localization" default="true" description="launch localization"/> 
     <arg name="map" default="true" description="launch map"/> 
     <arg name="system" default="true" description="launch system"/> 
@@ -50,6 +50,11 @@
         <arg name="use_multithread" value="true"/>
         <arg name="container_name" value="$(var pointcloud_container_name)"/>
     </include>
+
+    <!-- Perception --> 
+    <group if="$(var perception)">
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_perception_component.launch.xml"/>
+    </group>
 
     <!-- Localization -->
     <group if="$(var localization)">
@@ -95,5 +100,6 @@
     </group>
 
     <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_base" args="0 0 0 0 0 0 /map /base_link"/> -->
-    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/carla_sensing_simulation.rviz"/>
+    <!-- <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/carla_sensing_simulation.rviz"/> -->
+    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/perception.rviz"/>
 </launch>

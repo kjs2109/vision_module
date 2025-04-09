@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <push-ros-namespace namespace="perception"/>
+    <include file="$(find-pkg-share autoware_tensorrt_yolox)/launch/yolox.launch.xml">
+        <arg name="input/image" value="/sensing/camera/camera0/image_raw"/>
+        <arg name="use_decompress" value="false"/>
+    </include>
+</launch>

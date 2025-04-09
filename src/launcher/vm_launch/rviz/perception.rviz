@@ -21,10 +21,8 @@ Panels:
         - /Planning1/ScenarioPlanning1/Parking1/PoseArray1
         - /Planning1/Diagnostic1
         - /Control1/Predicted Trajectory1
-        - /Debug1
         - /Debug1/Sensing1/PointcloudOnCamera1
         - /Debug1/Sensing1/ConcatenatePointCloud1/Autocompute Value Bounds1
-        - /Debug1/Perception1
         - /Debug1/Perception1/Centerpoint(red1)1/UNKNOWN1
         - /Debug1/Perception1/Centerpoint(red1)1/CAR1
         - /Debug1/Perception1/Centerpoint(red1)1/TRUCK1
@@ -41,9 +39,8 @@ Panels:
         - /Debug1/Perception1/DetectionByTracker(orange)1/UNKNOWN1
         - /Debug1/Perception1/RadarFarObjects(white)1/UNKNOWN1
         - /Debug1/Perception1/Detection(yellow)1/UNKNOWN1
-        - /Image1/Topic1
-      Splitter Ratio: 0.7641357183456421
-    Tree Height: 588
+      Splitter Ratio: 0.4833948314189911
+    Tree Height: 314
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -127,209 +124,40 @@ Visualization Manager:
                 Expand Link Details: false
                 Expand Tree: false
                 Link Tree Style: Links in Alphabetic Order
-                ars408_front_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
                 base_link:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
                   Value: true
-                camera0/camera_link:
+                camera1:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                  Value: true
-                camera0/camera_optical_link:
+                camera_front:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                camera1/camera_link:
+                front_radar:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                  Value: true
-                camera1/camera_optical_link:
+                gnss:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                camera2/camera_link:
+                imu_link:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                  Value: true
-                camera2/camera_optical_link:
+                rear_radar:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                camera3/camera_link:
+                rs16_top_base_link:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
-                  Value: true
-                camera3/camera_optical_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                camera4/camera_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                camera4/camera_optical_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                camera5/camera_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                camera5/camera_optical_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                camera6/camera_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                camera6/camera_optical_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                camera7/camera_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                camera7/camera_optical_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                front_center/radar_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                front_left/radar_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                front_right/radar_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                front_unit_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                gnss_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_40p_front:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_40p_front_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_40p_left:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_40p_left_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_40p_rear:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_40p_rear_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_40p_right:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_40p_right_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_qt_front:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_qt_front_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_qt_left:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_qt_left_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_qt_rear:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_qt_rear_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                pandar_qt_right:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                pandar_qt_right_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                rear_center/radar_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                rear_left/radar_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                rear_right/radar_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                rear_unit_base_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                tamagawa/imu_link:
-                  Alpha: 1
-                  Show Axes: false
-                  Show Trail: false
-                  Value: true
-                top_unit_base_link:
+                sensor_kit_base_link:
                   Alpha: 1
                   Show Axes: false
                   Show Trail: false
@@ -355,13 +183,19 @@ Visualization Manager:
               Value: true
               Wave Color: 255; 255; 255
               Wave Velocity: 40
-            - Class: autoware_overlay_rviz_plugin/SignalDisplay
+            - Background Alpha: 0.30000001192092896
+              Background Color: 0; 0; 0
+              Class: autoware_overlay_rviz_plugin/SignalDisplay
+              Dark Traffic Color: 255; 51; 51
               Enabled: true
               Gear Topic Test: /vehicle/status/gear_status
+              Handle Angle Scale: 17
               Hazard Lights Topic: /vehicle/status/hazard_lights_status
               Height: 100
               Left: -660
+              Light Traffic Color: 255; 153; 153
               Name: SignalDisplay
+              Primary Color: 174; 174; 174
               Signal Color: 0; 230; 120
               Speed Limit Topic: /planning/scenario_planning/current_max_velocity
               Speed Topic: /vehicle/status/velocity_status
@@ -431,37 +265,13 @@ Visualization Manager:
           Enabled: true
           Name: Lanelet2VectorMap
           Namespaces:
-            "": true
             center_lane_line: true
             center_line_arrows: true
-            crosswalk_areas: true
-            crosswalk_lanelet_id: true
-            crosswalk_lanelets: true
-            curbstone: true
-            hatched_road_markings_area: true
-            hatched_road_markings_bound: true
-            intersection_area: true
             lane_start_bound: true
-            lanelet direction: true
             lanelet_id: true
             left_lane_bound: true
-            no_parking_area: true
-            no_stopping_area: true
-            partitions: true
-            pedestrian_polygon_marking: true
             right_lane_bound: true
             road_lanelets: false
-            shoulder_center_lane_line: true
-            shoulder_center_line_arrows: true
-            shoulder_lane_start_bound: true
-            shoulder_left_lane_bound: true
-            shoulder_right_lane_bound: true
-            shoulder_road_lanelets: true
-            stop_lines: true
-            traffic_light: true
-            traffic_light_id: true
-            traffic_light_reg_elem_id: true
-            traffic_light_triangle: true
             walkway_lanelets: true
           Topic:
             Depth: 5
@@ -497,7 +307,7 @@ Visualization Manager:
               Name: ConcatenatePointCloud
               Position Transformer: XYZ
               Selectable: false
-              Size (Pixels): 1
+              Size (Pixels): 2
               Size (m): 0.019999999552965164
               Style: Points
               Topic:
@@ -729,7 +539,12 @@ Visualization Manager:
               Enabled: true
               Name: MonteCarloInitialPose
               Namespaces:
-                {}
+                initial_pose_index_color_marker: true
+                initial_pose_iteration_color_marker: true
+                initial_pose_transform_probability_color_marker: true
+                result_pose_index_color_marker: true
+                result_pose_iteration_color_marker: true
+                result_pose_transform_probability_color_marker: true
               Topic:
                 Depth: 5
                 Durability Policy: Volatile
@@ -1086,12 +901,15 @@ Visualization Manager:
                 Reliability Policy: Reliable
                 Value: /planning/mission_planning/echo_back_goal_pose
               Value: true
-            - Class: autoware_mission_details_overlay_rviz_plugin/MissionDetailsDisplay
+            - Background Alpha: 0.30000001192092896
+              Background Color: 0; 0; 0
+              Class: autoware_mission_details_overlay_rviz_plugin/MissionDetailsDisplay
               Enabled: true
               Height: 100
               Name: MissionDetailsDisplay
               Remaining Distance and Time Topic: /planning/mission_remaining_distance_time
               Right: 10
+              Text Color: 194; 194; 194
               Top: 10
               Value: true
               Width: 170
@@ -1121,9 +939,11 @@ Visualization Manager:
                 Vehicle Width: 1.6950000524520874
               View Path:
                 Alpha: 0.9990000128746033
-                Color: 0; 0; 0
-                Constant Color: false
                 Constant Width: false
+                Fade Out Distance: 0
+                Max Velocity Color: 0; 230; 120
+                Mid Velocity Color: 32; 138; 174
+                Min Velocity Color: 63; 46; 227
                 Value: true
                 Width: 2
               View Point:
@@ -1175,9 +995,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.4000000059604645
-                        Color: 0; 0; 0
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1225,9 +1047,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 110; 10
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1275,9 +1099,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 110; 210
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1325,9 +1151,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 210; 110
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1375,9 +1203,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 210; 110
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1425,9 +1255,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 110; 110; 210
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1475,9 +1307,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 110; 110
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1525,9 +1359,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1575,9 +1411,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1625,9 +1463,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1675,9 +1515,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1725,9 +1567,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1775,9 +1619,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1825,9 +1671,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1875,9 +1723,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1925,9 +1775,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -2622,9 +2474,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.9990000128746033
-                        Color: 0; 0; 0
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -3039,9 +2893,11 @@ Visualization Manager:
             Vehicle Width: 1.6950000524520874
           View Path:
             Alpha: 1
-            Color: 255; 255; 255
-            Constant Color: true
             Constant Width: true
+            Fade Out Distance: 0
+            Max Velocity Color: 0; 230; 120
+            Mid Velocity Color: 32; 138; 174
+            Min Velocity Color: 63; 46; 227
             Value: true
             Width: 0.05000000074505806
           View Point:
@@ -3145,42 +3001,15 @@ Visualization Manager:
                 Debug:
                   Control: true
                   Localization:
-                    EKFPoseHistory: true
-                    NDT pointclouds: true
-                    NDTLoadedPCDMap: true
-                    NDTPoseHistory: true
+                    "": true
                     Value: true
                   Map: true
                   Perception:
-                    CameraLidarFusion(purple): true
-                    Centerpoint(red1): true
-                    CenterpointROIFusion(red2): true
-                    CenterpointValidator(red3): true
-                    Detection(yellow): true
-                    DetectionByTracker(orange): true
-                    PointPainting(light_green1): true
-                    PointPaintingROIFusion(light_green2): true
-                    PointPaintingValidator(light_green3): true
-                    Prediction(light_blue): true
-                    RadarFarObjects(white): true
-                    Tracking(green): true
+                    "": true
                     Value: true
                   Planning:
-                    Objects Of Interest:
-                      AvoidanceByLCLeft: true
-                      AvoidanceByLCRight: true
-                      AvoidanceLeft: true
-                      AvoidanceRight: true
-                      BlindSpot: true
-                      Crosswalk: true
-                      DetectionArea: true
-                      GoalPlanner: true
-                      Intersection: true
-                      LaneChangeLeft: true
-                      LaneChangeRight: true
-                      NoStoppingArea: true
-                      StartPlanner: true
-                      TrafficLight: true
+                    "":
+                      "": true
                       Value: true
                     Value: true
                   Sensing:
@@ -3328,9 +3157,7 @@ Visualization Manager:
                             Value: true
                           ObstacleAvoidance: true
                           ObstacleCruise:
-                            CruiseVirtualWall: true
                             DebugMarker: true
-                            SlowDownVirtualWall: true
                             Value: true
                           ObstacleStop: true
                           SurroundObstacleChecker:
@@ -3347,7 +3174,9 @@ Visualization Manager:
                           VirtualWall (DynamicObstacleStop): true
                           VirtualWall (MotionVelocitySmoother): true
                           VirtualWall (ObstacleAvoidance): true
-                          VirtualWall (ObstacleCruise): true
+                          VirtualWall (ObstacleCruise Cruise): true
+                          VirtualWall (ObstacleCruise SlowDown): true
+                          VirtualWall (ObstacleCruise Stop): true
                           VirtualWall (ObstacleStop): true
                           VirtualWall (ObstacleVelocityLimiter): true
                           VirtualWall (OutOfLane): true
@@ -3613,11 +3442,7 @@ Visualization Manager:
                 Color: 255; 138; 128
               Name: Centerpoint(red1)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -3725,11 +3550,7 @@ Visualization Manager:
                 Color: 213; 0; 0
               Name: CenterpointValidator(red3)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -3945,11 +3766,7 @@ Visualization Manager:
                 Color: 255; 145; 0
               Name: DetectionByTracker(orange)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -4111,11 +3928,7 @@ Visualization Manager:
                 Color: 255; 234; 0
               Name: Detection(yellow)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -4170,13 +3983,7 @@ Visualization Manager:
                 Color: 0; 230; 118
               Name: Tracking(green)
               Namespaces:
-                acceleration: true
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                uuid: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -4230,15 +4037,7 @@ Visualization Manager:
                 Color: 0; 176; 255
               Name: Prediction(light_blue)
               Namespaces:
-                acceleration: true
-                label: true
-                path: true
-                path confidence: true
-                position covariance: true
-                shape: true
-                twist: true
-                uuid: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -4469,7 +4268,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Best Effort
-        Value: /sensing/camera/image
+        Value: /perception/tensorrt_yolox/out/image
       Value: true
     - Class: rviz_plugins/StringStampedOverlayDisplay
       Enabled: true
@@ -4534,25 +4333,25 @@ Visualization Manager:
   Views:
     Current:
       Class: tier4_camera_view_rviz_plugin/ThirdPersonView
-      Distance: 111.22172546386719
+      Distance: 47.90850830078125
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
+        X: -4.158536911010742
+        Y: -0.3036889135837555
         Z: 0
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5697963237762451
+      Pitch: 1.5547963380813599
       Target Frame: base_link
       Value: ThirdPersonView (tier4_camera_view_rviz_plugin)
-      Yaw: 3.141592025756836
+      Yaw: 3.1515932083129883
     Saved:
       - Class: rviz_default_plugins/ThirdPersonFollower
         Distance: 18
@@ -4598,7 +4397,7 @@ Window Geometry:
     collapsed: false
   Displays:
     collapsed: false
-  Height: 1376
+  Height: 1043
   Hide Left Dock: false
   Hide Right Dock: false
   Image:
@@ -4609,7 +4408,7 @@ Window Geometry:
     collapsed: false
   PointcloudOnCamera:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001ee00000506fc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005d00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c0000000332000000720000004400fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d006500720061000000003d000000a80000002900fffffffb00000020004d0075006c007400690044006100740061004d006f006e00690074006f0072000000003d000005060000006f00fffffffb0000003e004c006f006700670069006e0067004c006500760065006c0043006f006e006600690067007500720065005200760069007a0050006c007500670069006e000000003d000003830000006f00fffffffb0000001e005200540043004d0061006e006100670065007200500061006e0065006c000000003d000005060000013700ffffff000000010000022000000502fc0200000008fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d006100670065000000003d0000010d0000002900fffffffb0000000a0049006d006100670065010000003f000001830000002900fffffffb0000000a0049006d006100670065010000003d000002230000000000000000fb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c01000001c8000000c80000006f00fffffffc00000296000002ab000000eb0100001efa000000010100000003fb00000034004100750074006f007700610072006500530063007200650065006e004300610070007400750072006500500061006e0065006c0100000000ffffffff000001a700fffffffb000000100044006900730070006c0061007900730100000000ffffffff0000015b00fffffffb0000000a0056006900650077007301000007c1000001f90000010000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007300000004a2000000a10000005d00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d00650100000000000004500000000000000000000007940000050200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001ee00000506fc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c0000000332000000720000004100fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d006500720061000000003d000000a80000002800fffffffb00000020004d0075006c007400690044006100740061004d006f006e00690074006f0072000000003d000005060000006e00fffffffb0000003e004c006f006700670069006e0067004c006500760065006c0043006f006e006600690067007500720065005200760069007a0050006c007500670069006e000000003d000003830000006e00fffffffb0000001e005200540043004d0061006e006100670065007200500061006e0065006c000000003d000005060000006e00ffffff00000001000002c5000003b9fc0200000008fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d006100670065000000003d0000010d0000002800fffffffb0000000a0049006d006100670065010000003d000001ab0000002800fffffffb0000000a0049006d006100670065010000003d000002230000000000000000fb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c01000001ee0000006e0000006e00fffffffc0000026200000194000000e60100001cfa000000010100000003fb00000034004100750074006f007700610072006500530063007200650065006e004300610070007400750072006500500061006e0065006c0100000000ffffffff0000010100fffffffb000000100044006900730070006c0061007900730100000000ffffffff0000015600fffffffb0000000a0056006900650077007301000007c1000001f90000010000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007300000004a2000000a10000005c00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004b5000003b900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RTCManagerPanel:
     collapsed: false
   RecognitionResultOnImage:
@@ -4620,6 +4419,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 2490
-  X: 70
-  Y: 27
+  Width: 1920
+  X: 0
+  Y: 360
