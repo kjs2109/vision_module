@@ -46,15 +46,15 @@
     </group>
 
     <!-- Pointcloud container -->
-    <include file="$(find-pkg-share launcher)/launch/pointcloud_container.launch.py">
+    <include file="$(find-pkg-share vm_launch)/launch/pointcloud_container.launch.py">
         <arg name="use_multithread" value="true"/>
         <arg name="container_name" value="$(var pointcloud_container_name)"/>
     </include>
 
     <!-- Localization -->
     <group if="$(var localization)">
-        <include file="$(find-pkg-share launcher)/launch/components/tier4_localization_component.launch.xml">
-            <arg name="loc_config_path" value="$(find-pkg-share launcher)/config/localization"/>
+        <include file="$(find-pkg-share vm_launch)/launch/components/tier4_localization_component.launch.xml">
+            <arg name="loc_config_path" value="$(find-pkg-share vm_launch)/config/localization"/>
             <arg name="pose_source" value="ndt"/>
             <arg name="twist_source" value="gyro_odom"/>
             <arg name="input_pointcloud" value="/sensing/lidar/concatenated/pointcloud"/>
@@ -65,7 +65,7 @@
 
     <!-- Map -->
     <group if="$(var map)">
-        <include file="$(find-pkg-share launcher)/launch/components/tier4_map_component.launch.xml">
+        <include file="$(find-pkg-share vm_launch)/launch/components/tier4_map_component.launch.xml">
             <arg name="map_folder" value="$(var map_path)"/>
             <arg name="lanelet2_map_file" value="$(var lanelet2_map_file)"/>
             <arg name="pointcloud_map_file" value="$(var pointcloud_map_file)"/>
@@ -85,15 +85,15 @@
         <arg name="sensor_model" value="$(var sensor_model)"/>
         <arg name="launch_vehicle_interface" value="$(var launch_vehicle_interface)"/>
         <arg name="config_dir" value="$(find-pkg-share $(var sensor_model)_description)/config"/>
-        <arg name="raw_vehicle_cmd_converter_param_path" value="$(find-pkg-share launcher)/config/vehicle/raw_vehicle_cmd_converter/raw_vehicle_cmd_converter.param.yaml"/>
+        <arg name="raw_vehicle_cmd_converter_param_path" value="$(find-pkg-share vm_launch)/config/vehicle/raw_vehicle_cmd_converter/raw_vehicle_cmd_converter.param.yaml"/>
         </include>
     </group>
 
     <!-- API -->
     <group if="$(var api)">
-        <include file="$(find-pkg-share launcher)/launch/components/tier4_autoware_api_component.launch.xml"/>
+        <include file="$(find-pkg-share vm_launch)/launch/components/tier4_autoware_api_component.launch.xml"/>
     </group>
 
     <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_base" args="0 0 0 0 0 0 /map /base_link"/> -->
-    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d /media/k/part11/vision_module/src/launcher/rviz/carla_sensing_simulation.rviz"/>
+    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/carla_sensing_simulation.rviz"/>
 </launch>
