@@ -58,7 +58,7 @@
 
     <!-- Localization -->
     <group if="$(var localization)">
-        <include file="$(find-pkg-share vm_launch)/launch/components/tier4_localization_component.launch.xml">
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_localization_component.launch.xml">
             <arg name="loc_config_path" value="$(find-pkg-share vm_launch)/config/localization"/>
             <arg name="pose_source" value="ndt"/>
             <arg name="twist_source" value="gyro_odom"/>
@@ -70,7 +70,7 @@
 
     <!-- Map -->
     <group if="$(var map)">
-        <include file="$(find-pkg-share vm_launch)/launch/components/tier4_map_component.launch.xml">
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_map_component.launch.xml">
             <arg name="map_folder" value="$(var map_path)"/>
             <arg name="lanelet2_map_file" value="$(var lanelet2_map_file)"/>
             <arg name="pointcloud_map_file" value="$(var pointcloud_map_file)"/>
@@ -96,7 +96,7 @@
 
     <!-- API -->
     <group if="$(var api)">
-        <include file="$(find-pkg-share vm_launch)/launch/components/tier4_autoware_api_component.launch.xml"/>
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_autoware_api_component.launch.xml"/>
     </group>
 
     <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_base" args="0 0 0 0 0 0 /map /base_link"/> -->

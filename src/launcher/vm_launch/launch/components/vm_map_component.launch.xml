@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="map_folder"/> 
+    <arg name="lanelet2_map_file" default="lanelet2_map.osm"/> 
+    <arg name="pointcloud_map_file" default="pointcloud_map.pcd"/> 
+
+    <include file="$(find-pkg-share tier4_map_launch)/launch/map.launch.xml">
+        <arg name="active_rviz" value="false"/>
+        <arg name="map_folder" value="$(var map_folder)"/>
+    </include>
+</launch>
