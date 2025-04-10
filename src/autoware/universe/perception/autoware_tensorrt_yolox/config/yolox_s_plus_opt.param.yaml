@@ -10,7 +10,7 @@
     overlap_roi_score_threshold: 0.3
 
     # publish color mask for result visualization
-    is_publish_color_mask: false
+    is_publish_color_mask: true
 
     roi_overlay_segment_label:
       UNKNOWN : true
