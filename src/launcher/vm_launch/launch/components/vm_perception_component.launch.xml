@@ -1,8 +1,108 @@
 <?xml version="1.0"?>
 <launch>
-    <push-ros-namespace namespace="perception"/>
-    <include file="$(find-pkg-share autoware_tensorrt_yolox)/launch/yolox.launch.xml">
-        <arg name="input/image" value="/sensing/camera/camera0/image_raw"/>
-        <arg name="use_decompress" value="false"/>
-    </include>
+    <!-- Parameter files -->
+    <!-- <arg name="object_recognition_detection_euclidean_cluster_param_path"/>
+    <arg name="object_recognition_detection_outlier_param_path"/>
+    <arg name="object_recognition_detection_object_lanelet_filter_param_path"/>
+    <arg name="object_recognition_detection_object_position_filter_param_path"/>
+    <arg name="object_recognition_detection_pointcloud_map_filter_param_path"/>
+    <arg name="object_recognition_prediction_map_based_prediction_param_path"/>
+    <arg name="object_recognition_detection_object_merger_data_association_matrix_param_path"/>
+    <arg name="object_recognition_detection_object_merger_distance_threshold_list_path"/>
+    <arg name="object_recognition_detection_fusion_sync_param_path"/>
+    <arg name="object_recognition_detection_roi_cluster_fusion_param_path"/>
+    <arg name="object_recognition_detection_roi_pointcloud_fusion_param_path"/>
+    <arg name="object_recognition_detection_roi_detected_object_fusion_param_path"/>
+    <arg name="object_recognition_detection_lidar_model_param_path"/>
+    <arg name="object_recognition_detection_radar_lanelet_filtering_range_param_path"/>
+    <arg name="object_recognition_detection_radar_crossing_objects_noise_filter_param_path"/>
+    <arg name="object_recognition_detection_radar_object_clustering_param_path"/>
+    <arg name="object_recognition_detection_object_velocity_splitter_radar_param_path"/>
+    <arg name="object_recognition_detection_object_velocity_splitter_radar_fusion_param_path"/>
+    <arg name="object_recognition_detection_object_range_splitter_radar_param_path"/>
+    <arg name="object_recognition_detection_object_range_splitter_radar_fusion_param_path"/>
+    <arg name="object_recognition_tracking_multi_object_tracker_data_association_matrix_param_path"/>
+    <arg name="object_recognition_tracking_multi_object_tracker_input_channels_param_path"/>
+    <arg name="object_recognition_tracking_multi_object_tracker_node_param_path"/>
+    <arg name="object_recognition_tracking_radar_object_tracker_data_association_matrix_param_path"/>
+    <arg name="object_recognition_tracking_radar_object_tracker_tracking_setting_param_path"/> -->
+    <arg name="obstacle_segmentation_ground_segmentation_param_path" default="$(find-pkg-share vm_launch)/config/perception/obstacle_segmentation/ground_segmentation/ground_segmentation.param.yaml"/>
+    <arg name="obstacle_segmentation_ground_segmentation_elevation_map_param_path" default="$(find-pkg-share vm_launch)/config/perception/obstacle_segmentation/ground_segmentation/elevation_map_parameters.yaml"/>
+    <!-- <arg name="object_recognition_detection_obstacle_pointcloud_based_validator_param_path"/>
+    <arg name="object_recognition_detection_detection_by_tracker_param"/> -->
+    <arg name="occupancy_grid_map_method" default="pointcloud_based_occupancy_grid_map"/> <!-- method -->
+    <arg name="occupancy_grid_map_updater" default="binary_bayes_filter"/> <!-- updater -->
+    <arg name="occupancy_grid_map_param_path" default="$(find-pkg-share vm_launch)/config/perception/occupancy_grid_map/$(var occupancy_grid_map_method).param.yaml"/>
+    <arg name="occupancy_grid_map_updater_param_path" default="$(find-pkg-share vm_launch)/config/perception/occupancy_grid_map/$(var occupancy_grid_map_updater)_updater.param.yaml"/>
+    <!-- <arg name="traffic_light_arbiter_param_path"/>
+    <arg name="lidar_detection_model"/> -->
+
+    <!-- Common parameters -->
+    <arg name="input/pointcloud" default="/sensing/lidar/concatenated/pointcloud" description="The topic will be used in the detection module"/>
+
+    <!-- Perception module -->
+    <group>
+        <push-ros-namespace namespace="perception"/>
+
+
+        <!-- Perception common preprocess -->
+        <!-- <arg name="downsample_perception_common_pointcloud" default="false"/>
+        <let name="downsampled_pointcloud" value="/perception/common/pointcloud"/>
+        <let name="perception_pointcloud" value="$(var input/pointcloud)" unless="$(var downsample_perception_common_pointcloud)"/>
+        <let name="perception_pointcloud" value="$(var downsampled_pointcloud)" if="$(var downsample_perception_common_pointcloud)"/>
+        <group if="$(var downsample_perception_common_pointcloud)">
+            <push-ros-namespace namespace="common"/>
+            <load_composable_node target="$(var pointcloud_container_name)">
+                <composable_node
+                pkg="autoware_pointcloud_preprocessor"
+                plugin="autoware::pointcloud_preprocessor::PickupBasedVoxelGridDownsampleFilterComponent"
+                name="pointcloud_downsample_node"
+                namespace=""
+                >
+                    <remap from="input" to="$(var input/pointcloud)"/>
+                    <remap from="output" to="$(var downsampled_pointcloud)"/>
+                    <param name="voxel_size_x" value="$(var common_downsample_voxel_size_x)"/>
+                    <param name="voxel_size_y" value="$(var common_downsample_voxel_size_y)"/>
+                    <param name="voxel_size_z" value="$(var common_downsample_voxel_size_z)"/>
+                    <extra_arg name="use_intra_process_comms" value="true"/>
+                </composable_node>
+            </load_composable_node>
+        </group> -->
+
+        <!-- Object segmentation module -->
+        <let name="perception_pointcloud" value="$(var input/pointcloud)"/>
+        <group>
+            <push-ros-namespace namespace="obstacle_segmentation"/>
+            <include file="$(find-pkg-share tier4_perception_launch)/launch/obstacle_segmentation/ground_segmentation/ground_segmentation.launch.py">
+                <arg name="base_frame" value="base_link"/>
+                <arg name="use_intra_process" value="true"/>
+                <arg name="use_multithread" value="true"/>
+                <arg name="pointcloud_container_name" value="$(var pointcloud_container_name)"/>
+                <arg name="input/pointcloud" value="$(var perception_pointcloud)"/>
+            </include>
+        </group>
+    
+        <!-- Occupancy grid map module -->
+        <group>
+            <push-ros-namespace namespace="occupancy_grid_map"/>
+            <include file="$(find-pkg-share tier4_perception_launch)/launch/occupancy_grid_map/probabilistic_occupancy_grid_map.launch.xml">
+                <arg name="input/obstacle_pointcloud" value="/perception/obstacle_segmentation/single_frame/pointcloud"/>
+                <arg name="input/raw_pointcloud" value="$(var perception_pointcloud)"/>
+                <arg name="output" value="/perception/occupancy_grid_map/map"/>
+                <arg name="use_intra_process" value="true"/>
+                <arg name="use_multithread" value="true"/>
+                <arg name="pointcloud_container_name" value="$(var pointcloud_container_name)"/>
+                <arg name="occupancy_grid_map_method" value="$(var occupancy_grid_map_method)"/>
+                <arg name="occupancy_grid_map_param_path" value="$(var occupancy_grid_map_param_path)"/>
+                <arg name="occupancy_grid_map_updater" value="$(var occupancy_grid_map_updater)"/>
+                <arg name="occupancy_grid_map_updater_param_path" value="$(var occupancy_grid_map_updater_param_path)"/>
+            </include>
+        </group>
+
+        <!-- 2d object detection -->
+        <include file="$(find-pkg-share autoware_tensorrt_yolox)/launch/yolox.launch.xml">
+            <arg name="input/image" value="/sensing/camera/camera0/image_raw"/>
+            <arg name="use_decompress" value="false"/>
+        </include>
+    </group>
 </launch>
