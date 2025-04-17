@@ -6,7 +6,6 @@
     <arg name="ego_vehicle_role_name" default="ego_vehicle"/>
     <arg name="vehicle_type" default="vehicle.toyota.prius"/>
     <arg name="spawn_point" default="None" description="location of ego vehicle spawn (default is random), example = [0.2 , 4.1, 0.4, 0., 0., 0.]"/>
-    <!-- <arg name="carla_map" default="Town01"/> -->
     <arg name="carla_map" default="Town01"/>
     <arg name="sync_mode" default="True"/>
     <arg name="fixed_delta_seconds" default="0.05" description="Time step for CARLA, FPS=1/value"/>
@@ -44,6 +43,6 @@
       <remap from="~/output/actuation_cmd" to="$(var output_actuation_cmd)"/>
     </node>
 
-    <node pkg="tf2_ros" exec="static_transform_publisher" name="rs16_top_base_link" args="0 0 1.58 0 0 0 /rs16_top_base_link /rs16_top_base_link_changed "/>
+    <node pkg="tf2_ros" exec="static_transform_publisher" name="rs16_top_base_link" args="0 0 1.48 0 0 0 /rs16_top_base_link /rs16_top_base_link_changed "/>
   </group>
 </launch>

@@ -1,79 +1,56 @@
 <?xml version="1.0"?>
 <launch>
     <!-- Parameter files -->
-    <!-- <arg name="object_recognition_detection_euclidean_cluster_param_path"/>
-    <arg name="object_recognition_detection_outlier_param_path"/>
-    <arg name="object_recognition_detection_object_lanelet_filter_param_path"/>
-    <arg name="object_recognition_detection_object_position_filter_param_path"/>
-    <arg name="object_recognition_detection_pointcloud_map_filter_param_path"/>
-    <arg name="object_recognition_prediction_map_based_prediction_param_path"/>
-    <arg name="object_recognition_detection_object_merger_data_association_matrix_param_path"/>
-    <arg name="object_recognition_detection_object_merger_distance_threshold_list_path"/>
-    <arg name="object_recognition_detection_fusion_sync_param_path"/>
-    <arg name="object_recognition_detection_roi_cluster_fusion_param_path"/>
-    <arg name="object_recognition_detection_roi_pointcloud_fusion_param_path"/>
-    <arg name="object_recognition_detection_roi_detected_object_fusion_param_path"/>
-    <arg name="object_recognition_detection_lidar_model_param_path"/>
-    <arg name="object_recognition_detection_radar_lanelet_filtering_range_param_path"/>
-    <arg name="object_recognition_detection_radar_crossing_objects_noise_filter_param_path"/>
-    <arg name="object_recognition_detection_radar_object_clustering_param_path"/>
-    <arg name="object_recognition_detection_object_velocity_splitter_radar_param_path"/>
-    <arg name="object_recognition_detection_object_velocity_splitter_radar_fusion_param_path"/>
-    <arg name="object_recognition_detection_object_range_splitter_radar_param_path"/>
-    <arg name="object_recognition_detection_object_range_splitter_radar_fusion_param_path"/>
-    <arg name="object_recognition_tracking_multi_object_tracker_data_association_matrix_param_path"/>
-    <arg name="object_recognition_tracking_multi_object_tracker_input_channels_param_path"/>
-    <arg name="object_recognition_tracking_multi_object_tracker_node_param_path"/>
-    <arg name="object_recognition_tracking_radar_object_tracker_data_association_matrix_param_path"/>
-    <arg name="object_recognition_tracking_radar_object_tracker_tracking_setting_param_path"/> -->
+    <arg name="object_recognition_detection_euclidean_cluster_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/clustering/euclidean_cluster.param.yaml"/>
+    <arg name="object_recognition_detection_outlier_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/clustering/outlier.param.yaml"/>
+    <arg name="object_recognition_detection_fusion_sync_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/image_projection_based_fusion/fusion_common.param.yaml"/>
+    <arg name="object_recognition_detection_roi_cluster_fusion_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/image_projection_based_fusion/roi_cluster_fusion.param.yaml"/>
+    <arg name="object_recognition_detection_roi_pointcloud_fusion_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/image_projection_based_fusion/roi_pointcloud_fusion.param.yaml"/>
+    <arg name="object_recognition_detection_roi_detected_object_fusion_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/image_projection_based_fusion/roi_detected_object_fusion.param.yaml"/>
+    <arg name="object_recognition_detection_lidar_model_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/lidar_model"/>
+    <arg name="object_recognition_detection_voxel_grid_based_euclidean_cluster_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/clustering/voxel_grid_based_euclidean_cluster.param.yaml"/>
+    <arg name="object_recognition_detection_detection_by_tracker_param" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/detection_by_tracker/detection_by_tracker.param.yaml"/>
+    <!-- <arg name="object_recognition_detection_radar_lanelet_filtering_range_param_path" default=""/> -->
+    <arg name="object_recognition_detection_object_lanelet_filter_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/object_filter/object_lanelet_filter.param.yaml"/>
+    <!-- <arg name="object_recognition_detection_object_position_filter_param_path"/> -->
+    <arg name="object_recognition_detection_pointcloud_map_filter_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/pointcloud_filter/pointcloud_map_filter.param.yaml"/>
+    <arg name="object_recognition_detection_obstacle_pointcloud_based_validator_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/detected_object_validation/obstacle_pointcloud_based_validator.param.yaml"/>
+    <!-- <arg name="object_recognition_detection_object_merger_data_association_matrix_param_path"/> -->
+    <!-- <arg name="object_recognition_detection_object_merger_distance_threshold_list_path"/> -->
+    <!-- <arg name="object_recognition_detection_radar_crossing_objects_noise_filter_param_path"/> -->
+    <!-- <arg name="object_recognition_detection_radar_object_clustering_param_path"/> -->
+    <!-- <arg name="object_recognition_detection_object_velocity_splitter_radar_param_path"/> -->
+    <!-- <arg name="object_recognition_detection_object_velocity_splitter_radar_fusion_param_path"/> -->
+    <!-- <arg name="object_recognition_detection_object_range_splitter_radar_param_path"/> -->
+    <!-- <arg name="object_recognition_detection_object_range_splitter_radar_fusion_param_path"/> -->
+    <!-- <arg name="object_recognition_tracking_radar_object_tracker_data_association_matrix_param_path"/> -->
+    <!-- <arg name="object_recognition_tracking_radar_object_tracker_tracking_setting_param_path"/> -->
+    <arg name="object_recognition_tracking_multi_object_tracker_data_association_matrix_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/tracking/multi_object_tracker/data_association_matrix.param.yaml"/>
+    <arg name="object_recognition_tracking_multi_object_tracker_input_channels_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/tracking/multi_object_tracker/input_channels.param.yaml"/>
+    <arg name="object_recognition_tracking_multi_object_tracker_node_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/tracking/multi_object_tracker/multi_object_tracker_node.param.yaml"/>
+    <arg name="object_recognition_prediction_map_based_prediction_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/prediction/map_based_prediction.param.yaml"/>
+    <!-- <arg name="object_recognition_tracking_object_merger_data_association_matrix_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/tracking/tracking_object_merger/data_association_matrix.param.yaml"/> -->
+    <!-- <arg name="object_recognition_tracking_object_merger_node_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/tracking/tracking_object_merger/decorative_tracker_merger.param.yaml"/> -->
     <arg name="obstacle_segmentation_ground_segmentation_param_path" default="$(find-pkg-share vm_launch)/config/perception/obstacle_segmentation/ground_segmentation/ground_segmentation.param.yaml"/>
     <arg name="obstacle_segmentation_ground_segmentation_elevation_map_param_path" default="$(find-pkg-share vm_launch)/config/perception/obstacle_segmentation/ground_segmentation/elevation_map_parameters.yaml"/>
-    <!-- <arg name="object_recognition_detection_obstacle_pointcloud_based_validator_param_path"/>
-    <arg name="object_recognition_detection_detection_by_tracker_param"/> -->
     <arg name="occupancy_grid_map_method" default="pointcloud_based_occupancy_grid_map"/> <!-- method -->
     <arg name="occupancy_grid_map_updater" default="binary_bayes_filter"/> <!-- updater -->
     <arg name="occupancy_grid_map_param_path" default="$(find-pkg-share vm_launch)/config/perception/occupancy_grid_map/$(var occupancy_grid_map_method).param.yaml"/>
     <arg name="occupancy_grid_map_updater_param_path" default="$(find-pkg-share vm_launch)/config/perception/occupancy_grid_map/$(var occupancy_grid_map_updater)_updater.param.yaml"/>
-    <!-- <arg name="traffic_light_arbiter_param_path"/>
-    <arg name="lidar_detection_model"/> -->
 
     <!-- Common parameters -->
+    <arg name="mode" default="camera_lidar_fusion" description="options: `camera_lidar_radar_fusion`, `camera_lidar_fusion`, `lidar_radar_fusion`, `lidar` or `radar`"/>
     <arg name="input/pointcloud" default="/sensing/lidar/concatenated/pointcloud" description="The topic will be used in the detection module"/>
 
     <!-- Perception module -->
     <group>
         <push-ros-namespace namespace="perception"/>
 
-
-        <!-- Perception common preprocess -->
-        <!-- <arg name="downsample_perception_common_pointcloud" default="false"/>
-        <let name="downsampled_pointcloud" value="/perception/common/pointcloud"/>
-        <let name="perception_pointcloud" value="$(var input/pointcloud)" unless="$(var downsample_perception_common_pointcloud)"/>
-        <let name="perception_pointcloud" value="$(var downsampled_pointcloud)" if="$(var downsample_perception_common_pointcloud)"/>
-        <group if="$(var downsample_perception_common_pointcloud)">
-            <push-ros-namespace namespace="common"/>
-            <load_composable_node target="$(var pointcloud_container_name)">
-                <composable_node
-                pkg="autoware_pointcloud_preprocessor"
-                plugin="autoware::pointcloud_preprocessor::PickupBasedVoxelGridDownsampleFilterComponent"
-                name="pointcloud_downsample_node"
-                namespace=""
-                >
-                    <remap from="input" to="$(var input/pointcloud)"/>
-                    <remap from="output" to="$(var downsampled_pointcloud)"/>
-                    <param name="voxel_size_x" value="$(var common_downsample_voxel_size_x)"/>
-                    <param name="voxel_size_y" value="$(var common_downsample_voxel_size_y)"/>
-                    <param name="voxel_size_z" value="$(var common_downsample_voxel_size_z)"/>
-                    <extra_arg name="use_intra_process_comms" value="true"/>
-                </composable_node>
-            </load_composable_node>
-        </group> -->
-
         <!-- Object segmentation module -->
         <let name="perception_pointcloud" value="$(var input/pointcloud)"/>
         <group>
             <push-ros-namespace namespace="obstacle_segmentation"/>
-            <include file="$(find-pkg-share tier4_perception_launch)/launch/obstacle_segmentation/ground_segmentation/ground_segmentation.launch.py">
+            <include file="$(find-pkg-share vm_perception_launch)/launch/obstacle_segmentation/ground_segmentation/ground_segmentation.launch.py">
                 <arg name="base_frame" value="base_link"/>
                 <arg name="use_intra_process" value="true"/>
                 <arg name="use_multithread" value="true"/>
@@ -85,7 +62,7 @@
         <!-- Occupancy grid map module -->
         <group>
             <push-ros-namespace namespace="occupancy_grid_map"/>
-            <include file="$(find-pkg-share tier4_perception_launch)/launch/occupancy_grid_map/probabilistic_occupancy_grid_map.launch.xml">
+            <include file="$(find-pkg-share vm_perception_launch)/launch/occupancy_grid_map/probabilistic_occupancy_grid_map.launch.xml">
                 <arg name="input/obstacle_pointcloud" value="/perception/obstacle_segmentation/single_frame/pointcloud"/>
                 <arg name="input/raw_pointcloud" value="$(var perception_pointcloud)"/>
                 <arg name="output" value="/perception/occupancy_grid_map/map"/>
@@ -99,10 +76,80 @@
             </include>
         </group>
 
-        <!-- 2d object detection -->
-        <include file="$(find-pkg-share autoware_tensorrt_yolox)/launch/yolox.launch.xml">
-            <arg name="input/image" value="/sensing/camera/camera0/image_raw"/>
-            <arg name="use_decompress" value="false"/>
-        </include>
+        <!-- Object recognition module -->
+        <group>
+            <push-ros-namespace namespace="object_recognition"/>
+            <!-- Detection module -->
+            <group>
+                <push-ros-namespace namespace="detection"/>
+                <include file="$(find-pkg-share vm_perception_launch)/launch/object_recognition/detection/detection.launch.xml">
+                    <arg name="mode" value="$(var mode)"/>
+                    <arg name="lidar_detection_model_type" value="centerpoint"/> <!-- transfusion -->
+                    <arg name="lidar_detection_model_name" value="centerpoint"/>
+                    <arg name="use_multi_channel_tracker_merger" value="false"/>
+                    <arg name="number_of_cameras" value="1"/>
+                    <arg name="input/camera0/image" value="/sensing/camera/camera0/image_raw"/>
+                    <arg name="input/camera0/info" value="/sensing/camera/camera0/image_info"/>
+                    <arg name="input/camera0/rois" value="/perception/object_recognition/detection/rois0"/>
+                    <arg name="input/pointcloud" value="/sensing/lidar/concatenated/pointcloud"/>
+                    <arg name="node/pointcloud_container" value="$(var pointcloud_container_name)"/>
+                    <!-- <arg name="input/radar" value="$(var input/radar)"/> -->
+                    <arg name="sync_param_path" value="$(var object_recognition_detection_fusion_sync_param_path)"/>
+                    <arg name="roi_cluster_fusion_param_path" value="$(var object_recognition_detection_roi_cluster_fusion_param_path)"/>
+                    <arg name="roi_pointcloud_fusion_param_path" value="$(var object_recognition_detection_roi_pointcloud_fusion_param_path)"/>
+                    <arg name="roi_detected_object_fusion_param_path" value="$(var object_recognition_detection_roi_detected_object_fusion_param_path)"/>
+                    <arg name="lidar_model_param_path" value="$(var object_recognition_detection_lidar_model_param_path)"/>
+                    <arg name="euclidean_param_path" value="$(var object_recognition_detection_euclidean_cluster_param_path)"/>
+                    <arg name="outlier_param_path" value="$(var object_recognition_detection_outlier_param_path)"/>
+                    <arg name="voxel_grid_based_euclidean_param_path" value="$(var object_recognition_detection_voxel_grid_based_euclidean_cluster_param_path)"/>
+                    <!-- <arg name="radar_lanelet_filtering_range_param_path" value="$(var object_recognition_detection_radar_lanelet_filtering_range_param_path)"/> -->
+                    <!-- <arg name="radar_object_clustering_param_path" value="$(var object_recognition_detection_radar_object_clustering_param_path)"/> -->
+                    <arg name="detection_by_tracker_param_path" value="$(var object_recognition_detection_detection_by_tracker_param)"/>
+                    <arg name="object_recognition_detection_pointcloud_map_filter_param_path" value="$(var object_recognition_detection_pointcloud_map_filter_param_path)"/>
+                    <arg name="object_recognition_detection_object_lanelet_filter_param_path" value="$(var object_recognition_detection_object_lanelet_filter_param_path)"/>
+                    <arg name="object_recognition_detection_obstacle_pointcloud_based_validator_param_path" value="$(var object_recognition_detection_obstacle_pointcloud_based_validator_param_path)"/>
+
+                    <arg name="use_detection_by_tracker" value="true"/>
+                    <arg name="use_validator" value="true"/>
+                    <arg name="objects_validation_method" value="obstacle_pointcloud"/>
+                    <arg name="use_pointcloud_map" value="true"/>
+                    <arg name="use_low_height_cropbox" value="true"/>
+                    <arg name="use_low_intensity_cluster_filter" value="true"/>
+                    <arg name="use_image_segmentation_based_filter" value="false"/>
+                    <arg name="use_object_filter" value="true"/>
+                    <arg name="objects_filter_method" value="lanelet_filter"/>
+                    <arg name="use_roi_based_cluster" value="true"/>
+                </include>
+                <!-- 2d object detection -->
+                <include file="$(find-pkg-share autoware_tensorrt_yolox)/launch/yolox.launch.xml">
+                    <arg name="input/image" value="/sensing/camera/camera0/image_raw"/>
+                    <arg name="use_decompress" value="false"/>
+                </include>
+            </group>
+
+            <!-- Tracking module -->
+            <group>
+                <push-ros-namespace namespace="tracking"/>
+                <include file="$(find-pkg-share vm_perception_launch)/launch/object_recognition/tracking/tracking.launch.xml">
+                <arg name="mode" value="$(var mode)"/>
+                <arg name="object_recognition_tracking_multi_object_tracker_data_association_matrix_param_path" value="$(var object_recognition_tracking_multi_object_tracker_data_association_matrix_param_path)"/>
+                <arg name="object_recognition_tracking_multi_object_tracker_input_channels_param_path" value="$(var object_recognition_tracking_multi_object_tracker_input_channels_param_path)"/>
+                <arg name="object_recognition_tracking_multi_object_tracker_node_param_path" value="$(var object_recognition_tracking_multi_object_tracker_node_param_path)"/>
+                <!-- <arg name="object_recognition_tracking_object_merger_data_association_matrix_param_path" value="$(var object_recognition_tracking_object_merger_data_association_matrix_param_path)"/>
+                <arg name="object_recognition_tracking_object_merger_node_param_path" value="$(var object_recognition_tracking_object_merger_node_param_path)"/> -->
+                <arg name="use_multi_channel_tracker_merger" value="false"/>
+                <arg name="use_radar_tracking_fusion" value="false"/>
+                <arg name="use_detection_by_tracker" value="true"/>
+                </include>
+            </group>
+
+            <group>
+                <push-ros-namespace namespace="prediction"/>
+                <include file="$(find-pkg-share vm_perception_launch)/launch/object_recognition/prediction/prediction.launch.xml">
+                    <arg name="use_vector_map" value="true"/>
+                    <arg name="object_recognition_prediction_map_based_prediction_param_path" value="$(var object_recognition_prediction_map_based_prediction_param_path)"/>
+                </include>
+            </group>
+        </group>
     </group>
 </launch>

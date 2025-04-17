@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- ros2 bag play 실행 -->
+    <executable cmd="ros2 bag play /media/k/part11/vision_module/bags/kitti_bag_dataset --clock" output="screen"/>
+
+    <!-- CenterPoint -->
+    <!-- <let name="lidar_detection_model_name" value="$(eval &quot;'centerpoint_tiny' if ''=='$(var lidar_detection_model_name)' else '$(var lidar_detection_model_name)'&quot;)"/> -->
+    <push-ros-namespace namespace="centerpoint"/>
+    <arg name="data_path" default="/home/k/autoware_data"/>
+    <arg name="lidar_detection_model_name" default="centerpoint" description="options: `transfusion`, `centerpoint`, `centerpoint_tiny`, `centerpoint_sigma`, `pointpainting`"/>
+    <arg name="centerpoint_model_path" default="$(var data_path)/lidar_centerpoint"/>
+    <arg name="lidar_model_param_path" default="$(find-pkg-share vm_launch)/config/perception/object_recognition/detection/lidar_model"/>
+
+    <group>
+        <include file="$(find-pkg-share autoware_lidar_centerpoint)/launch/lidar_centerpoint.launch.xml">
+            <arg name="input/pointcloud" value="/points_raw"/>
+            <arg name="output/objects" value="objects"/>
+            <arg name="model_name" value="$(var lidar_detection_model_name)"/>
+            <arg name="model_path" value="$(var centerpoint_model_path)"/>
+            <arg name="model_param_path" value="$(var lidar_model_param_path)/$(var lidar_detection_model_name).param.yaml"/>
+            <arg name="ml_package_param_path" value="$(var centerpoint_model_path)/$(var lidar_detection_model_name)_ml_package.param.yaml"/>
+            <arg name="class_remapper_param_path" value="$(var centerpoint_model_path)/detection_class_remapper.param.yaml"/>
+
+            <arg name="use_pointcloud_container" value="false"/>
+            <arg name="pointcloud_container_name" value="pointcloud_container"/>
+        </include>
+    </group>
+
+    <!-- <group if="$(var switch/detector/lidar_rule)">
+        Lidar rule-based detectors
+        <include file="$(find-pkg-share vm_perception_launch)/launch/object_recognition/detection/detector/lidar_rule_detector.launch.xml">
+            <arg name="node/pointcloud_container" value="$(var node/pointcloud_container)"/>
+            <arg name="input/pointcloud_map/pointcloud" value="$(var pointcloud_filter/output/pointcloud)"/>
+            <arg name="input/obstacle_segmentation/pointcloud" value="$(var input/obstacle_segmentation/pointcloud)"/>
+            <arg name="output/objects" value="$(var lidar_rule_detector/output/objects)"/>
+            <arg name="use_low_height_cropbox" value="$(var use_low_height_cropbox)"/>
+        </include>
+    </group> -->
+
+    <node pkg="tf2_ros" exec="static_transform_publisher" name="lidar_to_map" args="0 0 0.0 0 0 0 /velodyne /map "/>
+    <node name="rviz2" pkg="rviz2" exec="rviz2"/>
+    <!-- <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/perception.rviz"/> -->
+</launch>

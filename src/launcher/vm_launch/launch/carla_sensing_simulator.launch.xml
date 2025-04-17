@@ -2,7 +2,7 @@
 <launch>
     <!-- Essential parameters --> 
     <arg name="use_sim_time" default="true"/> 
-    <arg name="map_path" default="/media/k/part11/vision_module/campus_map/Town01"/>
+    <arg name="map_path" default="/home/k/vision_module/campus_map/Town01"/>
     <arg name="vehicle_model" default="vm_vehicle"/> 
     <arg name="sensor_model" default="vm_sensor_kit"/> 
     <arg name="pointcloud_container_name" default="pointcloud_container"/>
@@ -78,7 +78,9 @@
     </group>
 
     <!-- Autoware-Carla bridge (Sensing) -->
-    <include file="$(find-pkg-share autoware_carla_interface)/autoware_carla_interface.launch.xml"/> 
+    <include file="$(find-pkg-share autoware_carla_interface)/autoware_carla_interface.launch.xml">
+        <arg name="carla_map" value="Town01"/>
+    </include> 
     <include file="$(find-pkg-share $(var sensor_model)_launch)/launch/sensing.launch.xml">
         <arg name="launch_driver" value="false"/>  <!-- for vehicle velocity converter -->
     </include>
