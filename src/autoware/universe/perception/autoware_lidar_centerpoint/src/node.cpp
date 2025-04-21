@@ -149,10 +149,8 @@ void LidarCenterPointNode::pointCloudCallback(
   std::vector<Box3D> det_boxes3d;
   bool is_success = detector_ptr_->detect(*input_pointcloud_msg, tf_buffer_, det_boxes3d);
   if (!is_success) {
-    std::cout << is_success << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl; 
     return;
   }
-  std::cout << is_success << std::endl; 
 
   std::vector<autoware_perception_msgs::msg::DetectedObject> raw_objects;
   raw_objects.reserve(det_boxes3d.size());

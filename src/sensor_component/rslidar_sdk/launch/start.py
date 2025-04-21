@@ -12,6 +12,7 @@ def launch_setup(context, *args, **kwargs):
             package='rslidar_sdk',
             executable='rslidar_sdk_node',
             remappings=[(f'{namespace}/rs/points', f'{namespace}/top/pointcloud_raw')],
+            #remappings=[(f'{namespace}/rs/points', f'{namespace}/concatenated/pointcloud')],
             output='screen'
         )
     ]

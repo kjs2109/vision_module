@@ -47,7 +47,7 @@ from launch_ros.actions import Node
 
 
 CAMERAS = [
-    CameraConfig(name='camera1', param_path=Path(USB_CAM_DIR, 'config', 'params_1.yaml')),
+    CameraConfig(name='camera0', param_path=Path(USB_CAM_DIR, 'config', 'params_1.yaml')),
     # CameraConfig(name='camera2', param_path=Path(USB_CAM_DIR, 'config', 'params_2.yaml')),
 ]
 

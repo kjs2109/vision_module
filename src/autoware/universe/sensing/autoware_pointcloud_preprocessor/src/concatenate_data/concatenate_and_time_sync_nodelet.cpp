@@ -557,7 +557,7 @@ void PointCloudConcatenateDataSynchronizerComponent::cloud_callback(
     if (utils::is_data_layout_compatible_with_point_xyzi(*input_ptr)) {
       RCLCPP_ERROR(
         get_logger(),
-        "The pointcloud layout is compatible with PointXYZI. You may be using legacy code/data");
+        "The pointcloud layout is compatible with PointXYZI. You may be using legacy code/data (concatenate_and_time_sync_nodelet)");
     }
 
     return;

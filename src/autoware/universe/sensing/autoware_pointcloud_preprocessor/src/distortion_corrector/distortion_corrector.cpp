@@ -177,7 +177,7 @@ bool DistortionCorrectorBase::is_pointcloud_valid(sensor_msgs::msg::PointCloud2 
     if (utils::is_data_layout_compatible_with_point_xyziradrt(pointcloud)) {
       RCLCPP_ERROR(
         node_.get_logger(),
-        "The pointcloud layout is compatible with PointXYZIRADRT. You may be using legacy "
+        "The pointcloud layout is compatible with PointXYZIRADRT. You may be using legacy (distortion_corrector)"
         "code/data");
     }
 

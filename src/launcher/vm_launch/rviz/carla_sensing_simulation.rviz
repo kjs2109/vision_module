@@ -49,13 +49,11 @@ Visualization Manager:
               Value: true
             map:
               Value: true
-            ndt_base_link:
-              Value: true
             rear_radar:
               Value: true
             rs16_top_base_link:
               Value: true
-            rs16_top_base_link_changed:
+            rslidar:
               Value: true
             sensor_kit_base_link:
               Value: true
@@ -83,10 +81,8 @@ Visualization Manager:
                   rear_radar:
                     {}
                   rs16_top_base_link:
-                    rs16_top_base_link_changed:
+                    rslidar:
                       {}
-              ndt_base_link:
-                {}
               viewer:
                 {}
           Update Interval: 0
@@ -277,7 +273,6 @@ Visualization Manager:
             left_lane_bound: true
             right_lane_bound: true
             road_lanelets: false
-            walkway_lanelets: true
           Topic:
             Depth: 5
             Durability Policy: Transient Local
@@ -377,12 +372,12 @@ Visualization Manager:
                 Reliability Policy: Reliable
                 Value: /sensing/gnss/pose_with_covariance
               Value: true
-          Enabled: false
+          Enabled: true
           Name: GNSS
         - Class: rviz_common/Group
           Displays:
             - Class: rviz_default_plugins/Image
-              Enabled: false
+              Enabled: true
               Max Value: 1
               Median window: 5
               Min Value: 0
@@ -394,7 +389,7 @@ Visualization Manager:
                 History Policy: Keep Last
                 Reliability Policy: Reliable
                 Value: /sensing/camera/camera0/image_raw
-              Value: false
+              Value: true
           Enabled: true
           Name: CAMERA
       Enabled: true
@@ -562,12 +557,7 @@ Visualization Manager:
               Enabled: true
               Name: MonteCarloInitialPose
               Namespaces:
-                initial_pose_index_color_marker: true
-                initial_pose_iteration_color_marker: true
-                initial_pose_transform_probability_color_marker: true
-                result_pose_index_color_marker: true
-                result_pose_iteration_color_marker: true
-                result_pose_transform_probability_color_marker: true
+                {}
               Topic:
                 Depth: 5
                 Durability Policy: Volatile
@@ -622,19 +612,46 @@ Visualization Manager:
                 Value: /sensing/camera/camera6/image_raw
               Value: true
               Visibility:
-                "": true
                 Debug:
                   Control: true
                   Localization:
-                    "": true
+                    EKFPoseHistory: true
+                    NDT pointclouds: true
+                    NDTLoadedPCDMap: true
+                    NDTPoseHistory: true
                     Value: true
                   Map: true
                   Perception:
-                    "": true
+                    CameraLidarFusion(purple): true
+                    Centerpoint(red1): true
+                    CenterpointROIFusion(red2): true
+                    CenterpointValidator(red3): true
+                    Detection(yellow): true
+                    DetectionByTracker(orange): true
+                    PointPainting(light_green1): true
+                    PointPaintingROIFusion(light_green2): true
+                    PointPaintingValidator(light_green3): true
+                    Prediction(light_blue): true
+                    RadarFarObjects(white): true
+                    Tracking(green): true
                     Value: true
                   Planning:
-                    "":
-                      "": true
+                    Objects Of Interest:
+                      AvoidanceByLCLeft: true
+                      AvoidanceByLCRight: true
+                      AvoidanceLeft: true
+                      AvoidanceRight: true
+                      BlindSpot: true
+                      Crosswalk: true
+                      DetectionArea: true
+                      GoalPlanner: true
+                      Intersection: true
+                      LaneChangeLeft: true
+                      LaneChangeRight: true
+                      NoStoppingArea: true
+                      ObstacleCruise: true
+                      StartPlanner: true
+                      TrafficLight: true
                       Value: true
                     Value: true
                   Sensing:
@@ -657,7 +674,8 @@ Visualization Manager:
                     Value: true
                   Value: false
                 Map:
-                  "": true
+                  Lanelet2VectorMap: true
+                  PointCloudMap: true
                   Value: false
                 Sensing:
                   CAMERA:
@@ -1746,13 +1764,11 @@ Visualization Manager:
           Value: true
         map:
           Value: true
-        ndt_base_link:
-          Value: true
         rear_radar:
           Value: true
         rs16_top_base_link:
           Value: true
-        rs16_top_base_link_changed:
+        rslidar:
           Value: true
         sensor_kit_base_link:
           Value: true
@@ -1780,10 +1796,8 @@ Visualization Manager:
               rear_radar:
                 {}
               rs16_top_base_link:
-                rs16_top_base_link_changed:
+                rslidar:
                   {}
-          ndt_base_link:
-            {}
           viewer:
             {}
       Update Interval: 0
@@ -1923,11 +1937,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 15.210140228271484
+      Scale: 14.029536247253418
       Target Frame: viewer
       Value: TopDownOrtho (rviz_default_plugins)
-      X: -198.62452697753906
-      Y: 151.58209228515625
+      X: -76.92481231689453
+      Y: -49.2187614440918
     Saved:
       - Class: rviz_default_plugins/ThirdPersonFollower
         Distance: 18
@@ -1978,7 +1992,7 @@ Window Geometry:
     collapsed: false
   PointcloudOnCamera:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000002020000032afc0200000011fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c010000003d000001bf0000006e00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000000a0049006d0061006700650000000126000001010000002800fffffffb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d006100670065000000022d000000f70000000000000000fb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c0000000332000000720000004100fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d006500720061000000039d000000560000002800fffffffb0000000a0049006d006100670065000000012b000000fc0000002800fffffffb0000000a0049006d00610067006501000001b6000001320000000000000000fb0000000a0049006d0061006700650100000202000001650000002800ffffff000000010000018e0000032afc0200000004fb000000100044006900730070006c006100790073010000003d000001a8000000c900fffffffc000001eb0000017c000000c10100001cfa000000000100000002fb0000000a0056006900650077007301000005d5000001ab0000010000fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000000ffffffff0000009d00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d00650100000000000004500000000000000000000002ee0000032a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000002020000032afc0200000011fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c010000003d000001dd0000006e00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000000a0049006d0061006700650000000126000001010000002800fffffffb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d006100670065000000022d000000f70000000000000000fb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c0000000332000000720000004100fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d006500720061000000039d000000560000002800fffffffb0000000a0049006d006100670065000000012b000000fc0000002800fffffffb0000000a0049006d0061006700650100000220000001470000002800fffffffb0000000a0049006d0061006700650100000202000001650000000000000000000000010000018e0000032afc0200000004fb000000100044006900730070006c006100790073010000003d000001a8000000c900fffffffc000001eb0000017c000000c10100001cfa000000000100000002fb0000000a0056006900650077007301000005d5000001ab0000010000fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000000ffffffff0000009d00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d00650100000000000004500000000000000000000002ee0000032a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Tool Properties:

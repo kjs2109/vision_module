@@ -379,14 +379,14 @@ void autoware::pointcloud_preprocessor::Filter::faster_input_indices_callback(
     if (utils::is_data_layout_compatible_with_point_xyziradrt(*cloud)) {
       RCLCPP_ERROR(
         get_logger(),
-        "The pointcloud layout is compatible with PointXYZIRADRT. You may be using legacy "
+        "The pointcloud layout is compatible with PointXYZIRADRT. You may be using legacy (is_data_layout_compatible_with_point_xyziradrt)"
         "code/data");
     }
 
     if (utils::is_data_layout_compatible_with_point_xyzi(*cloud)) {
       RCLCPP_ERROR(
         get_logger(),
-        "The pointcloud layout is compatible with PointXYZI. You may be using legacy "
+        "The pointcloud layout is compatible with PointXYZI. You may be using legacy (is_data_layout_compatible_with_point_xyzi)"
         "code/data");
     }
 
