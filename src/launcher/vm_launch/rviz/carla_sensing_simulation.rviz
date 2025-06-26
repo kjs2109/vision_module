@@ -8,8 +8,13 @@ Panels:
         - /Sensing1/LiDAR1/ConcatenatePointCloud1/Autocompute Value Bounds1
         - /Sensing1/CAMERA1/Image1
         - /Localization1/EKF1
-      Splitter Ratio: 0.557669460773468
-    Tree Height: 363
+        - /Debug1
+        - /Debug1/Sensing1/ConcatenatePointCloud1/Autocompute Value Bounds1
+        - /Debug1/Perception1
+        - /Image2/Status1
+        - /Image2/Topic1
+      Splitter Ratio: 0.40531179308891296
+    Tree Height: 614
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -49,11 +54,13 @@ Visualization Manager:
               Value: true
             map:
               Value: true
+            ndt_base_link:
+              Value: true
             rear_radar:
               Value: true
             rs16_top_base_link:
               Value: true
-            rslidar:
+            rs16_top_base_link_changed:
               Value: true
             sensor_kit_base_link:
               Value: true
@@ -81,8 +88,10 @@ Visualization Manager:
                   rear_radar:
                     {}
                   rs16_top_base_link:
-                    rslidar:
+                    rs16_top_base_link_changed:
                       {}
+              ndt_base_link:
+                {}
               viewer:
                 {}
           Update Interval: 0
@@ -273,6 +282,7 @@ Visualization Manager:
             left_lane_bound: true
             right_lane_bound: true
             road_lanelets: false
+            walkway_lanelets: true
           Topic:
             Depth: 5
             Durability Policy: Transient Local
@@ -377,7 +387,7 @@ Visualization Manager:
         - Class: rviz_common/Group
           Displays:
             - Class: rviz_default_plugins/Image
-              Enabled: true
+              Enabled: false
               Max Value: 1
               Median window: 5
               Min Value: 0
@@ -389,7 +399,7 @@ Visualization Manager:
                 History Policy: Keep Last
                 Reliability Policy: Reliable
                 Value: /sensing/camera/camera0/image_raw
-              Value: true
+              Value: false
           Enabled: true
           Name: CAMERA
       Enabled: true
@@ -557,7 +567,12 @@ Visualization Manager:
               Enabled: true
               Name: MonteCarloInitialPose
               Namespaces:
-                {}
+                initial_pose_index_color_marker: true
+                initial_pose_iteration_color_marker: true
+                initial_pose_transform_probability_color_marker: true
+                result_pose_index_color_marker: true
+                result_pose_iteration_color_marker: true
+                result_pose_transform_probability_color_marker: true
               Topic:
                 Depth: 5
                 Durability Policy: Volatile
@@ -594,7 +609,7 @@ Visualization Manager:
       Displays:
         - Class: rviz_common/Group
           Displays: ~
-          Enabled: true
+          Enabled: false
           Name: Map
         - Class: rviz_common/Group
           Displays:
@@ -838,7 +853,7 @@ Visualization Manager:
               Channel Name: intensity
               Class: rviz_default_plugins/PointCloud2
               Color: 255; 255; 255
-              Color Transformer: ""
+              Color Transformer: Intensity
               Decay Time: 0
               Enabled: true
               Invert Rainbow: false
@@ -847,7 +862,7 @@ Visualization Manager:
               Min Color: 0; 0; 0
               Min Intensity: 0
               Name: NDTLoadedPCDMap
-              Position Transformer: ""
+              Position Transformer: XYZ
               Selectable: true
               Size (Pixels): 3
               Size (m): 0.10000000149011612
@@ -1086,7 +1101,7 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
@@ -1114,7 +1129,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 178; 255; 89
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -1140,7 +1155,7 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
@@ -1168,7 +1183,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 118; 255; 3
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -1194,7 +1209,7 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
@@ -1222,7 +1237,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 100; 221; 23
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -1255,7 +1270,11 @@ Visualization Manager:
                 Color: 255; 145; 0
               Name: DetectionByTracker(orange)
               Namespaces:
-                {}
+                label: true
+                position covariance: true
+                shape: true
+                twist: true
+                velocity: true
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -1309,7 +1328,11 @@ Visualization Manager:
                 Color: 213; 0; 249
               Name: CameraLidarFusion(purple)
               Namespaces:
-                {}
+                label: true
+                position covariance: true
+                shape: true
+                twist: true
+                velocity: true
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -1417,7 +1440,11 @@ Visualization Manager:
                 Color: 255; 234; 0
               Name: Detection(yellow)
               Namespaces:
-                {}
+                label: true
+                position covariance: true
+                shape: true
+                twist: true
+                velocity: true
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -1472,7 +1499,13 @@ Visualization Manager:
                 Color: 0; 230; 118
               Name: Tracking(green)
               Namespaces:
-                {}
+                acceleration: true
+                label: true
+                position covariance: true
+                shape: true
+                twist: true
+                uuid: true
+                velocity: true
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -1526,7 +1559,15 @@ Visualization Manager:
                 Color: 0; 176; 255
               Name: Prediction(light_blue)
               Namespaces:
-                {}
+                acceleration: true
+                label: true
+                path: true
+                path confidence: true
+                position covariance: true
+                shape: true
+                twist: true
+                uuid: true
+                velocity: true
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -1743,7 +1784,7 @@ Visualization Manager:
           Displays: ~
           Enabled: true
           Name: Control
-      Enabled: false
+      Enabled: true
       Name: Debug
     - Class: rviz_default_plugins/TF
       Enabled: true
@@ -1764,11 +1805,13 @@ Visualization Manager:
           Value: true
         map:
           Value: true
+        ndt_base_link:
+          Value: true
         rear_radar:
           Value: true
         rs16_top_base_link:
           Value: true
-        rslidar:
+        rs16_top_base_link_changed:
           Value: true
         sensor_kit_base_link:
           Value: true
@@ -1796,26 +1839,14 @@ Visualization Manager:
               rear_radar:
                 {}
               rs16_top_base_link:
-                rslidar:
+                rs16_top_base_link_changed:
                   {}
+          ndt_base_link:
+            {}
           viewer:
             {}
       Update Interval: 0
       Value: true
-    - Class: rviz_default_plugins/Image
-      Enabled: false
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /sensing/camera/traffic_light/image_raw
-      Value: false
     - Class: rviz_default_plugins/Image
       Enabled: true
       Max Value: 1
@@ -1828,7 +1859,21 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /perception/tensorrt_yolox/out/image
+        Value: /perception/object_recognition/detection/tensorrt_yolox/out/color_mask
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /perception/object_recognition/detection/tensorrt_yolox/out/image
       Value: true
   Enabled: true
   Global Options:
@@ -1927,7 +1972,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: 0
+      Angle: -1.5650004148483276
       Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -1937,11 +1982,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 14.029536247253418
-      Target Frame: viewer
+      Scale: 29.110126495361328
+      Target Frame: base_link
       Value: TopDownOrtho (rviz_default_plugins)
-      X: -76.92481231689453
-      Y: -49.2187614440918
+      X: -0.8668677806854248
+      Y: -7.330434322357178
     Saved:
       - Class: rviz_default_plugins/ThirdPersonFollower
         Distance: 18
@@ -1985,20 +2030,20 @@ Window Geometry:
     collapsed: false
   Displays:
     collapsed: false
-  Height: 900
+  Height: 1376
   Hide Left Dock: false
   Hide Right Dock: false
   Image:
     collapsed: false
   PointcloudOnCamera:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000002020000032afc0200000011fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c010000003d000001dd0000006e00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000000a0049006d0061006700650000000126000001010000002800fffffffb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d006100670065000000022d000000f70000000000000000fb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c0000000332000000720000004100fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d006500720061000000039d000000560000002800fffffffb0000000a0049006d006100670065000000012b000000fc0000002800fffffffb0000000a0049006d0061006700650100000220000001470000002800fffffffb0000000a0049006d0061006700650100000202000001650000000000000000000000010000018e0000032afc0200000004fb000000100044006900730070006c006100790073010000003d000001a8000000c900fffffffc000001eb0000017c000000c10100001cfa000000000100000002fb0000000a0056006900650077007301000005d5000001ab0000010000fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000000ffffffff0000009d00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d00650100000000000004500000000000000000000002ee0000032a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000020200000506fc0200000011fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb00000024004100750074006f00770061007200650053007400610074006500500061006e0065006c010000003d0000019d0000006e00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d0065007200610100000682000000eb0000000000000000fb0000000a0049006d00610067006501000001e0000001fd0000002800fffffffb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb0000002c0049006e0069007400690061006c0050006f007300650042007500740074006f006e00500061006e0065006c000000068f000000de0000000000000000fb00000030005200650063006f0067006e006900740069006f006e0052006500730075006c0074004f006e0049006d006100670065000000022d000000f70000000000000000fb0000002a004100750074006f0077006100720065004400610074006500540069006d006500500061006e0065006c0000000332000000720000004100fffffffb000000240050006f0069006e00740063006c006f00750064004f006e00430061006d00650072006100000003a5000000500000002800fffffffb0000000a0049006d00610067006501000003e3000001600000002800fffffffb0000000a0049006d00610067006500000003dc000001670000002800fffffffb0000000a0049006d0061006700650100000202000001650000000000000000000000010000036400000506fc0200000004fb000000100044006900730070006c006100790073010000003d000002a3000000c900fffffffc000002e60000025d000000c10100001cfa000000000100000002fb0000000a0056006900650077007301000005d5000001ab0000010000fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000000ffffffff0000009d00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000e7a0000005afc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000e7a0000005afc0100000002fb0000000800540069006d0065010000000000000e7a0000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004480000050600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Tool Properties:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1674
-  X: 103
-  Y: 438
+  Width: 2490
+  X: 70
+  Y: 27

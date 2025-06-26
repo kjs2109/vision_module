@@ -72,7 +72,7 @@ class InitializeInterface(object):
         self.vehicle_type = self.param_["vehicle_type"]
         self.spawn_point = self.param_["spawn_point"]
         self.use_traffic_manager = self.param_["use_traffic_manager"]
-        self.max_real_delta_seconds = self.param_["max_real_delta_seconds"]
+        self.max_real_delta_seconds = self.param_["max_real_delta_seconds"] 
 
     def load_world(self):
         client = carla.Client(self.local_host, self.port)
@@ -88,11 +88,12 @@ class InitializeInterface(object):
         spawn_point = carla.Transform()
         point_items = self.spawn_point.split(",")
         randomize = False
+        print(point_items, '!'*50)
         if len(point_items) == 6:
             spawn_point.location.x = float(point_items[0])
             spawn_point.location.y = float(point_items[1])
             spawn_point.location.z = (
-                float(point_items[2]) + 2
+                float(point_items[2]) + 0.5
             )  # +2 is used so the car did not stuck on the road when spawned.
             spawn_point.rotation.roll = float(point_items[3])
             spawn_point.rotation.pitch = float(point_items[4])

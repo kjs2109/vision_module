@@ -8,8 +8,8 @@
       # av_device_format: "YUV422P"
       pixel_format: "mjpeg2rgb"
       av_device_format: "YUV422P"
-      image_width: 640
-      image_height: 360
+      image_width: 960 # 640
+      image_height: 960 # 360
       camera_name: "test_camera"
       camera_info_url: "package://usb_cam/config/camera_info.yaml"
       brightness: -1

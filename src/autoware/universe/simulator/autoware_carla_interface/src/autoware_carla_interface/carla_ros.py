@@ -312,7 +312,7 @@ class carla_ros2_interface(object):
             0.0,
             0.0,
         ]
-        self.pub_pose_with_cov.publish(out_pose_with_cov)
+        # self.pub_pose_with_cov.publish(out_pose_with_cov)
 
     def _build_camera_info(self, camera_actor):
         """Build camera info."""
@@ -362,7 +362,7 @@ class carla_ros2_interface(object):
         self.publish_prev_times["imu"] = datetime.datetime.now()
 
         imu_msg = Imu()
-        imu_msg.header = self.get_msg_header(frame_id="imu_link")
+        imu_msg.header = self.get_msg_header(frame_id="imu_link") 
         imu_msg.angular_velocity.x = -carla_imu_measurement.gyroscope.x
         imu_msg.angular_velocity.y = carla_imu_measurement.gyroscope.y
         imu_msg.angular_velocity.z = -carla_imu_measurement.gyroscope.z

@@ -40,3 +40,30 @@ rqt_runtime_monitor 등에서 /diagnostics 토픽을 구독하면 다음과 같�
 # [맵핑 - lio_sam] 
 ros2 launch lio_sam run.launch.py params_file:=/media/k/part11/vision_module/src/autoware/external/lio_sam/config/params_campus.yaml
 ros2 service call /save_local_map_service std_srvs/srv/Trigger {}
+
+# troubleshooting 
+1. gnss 장치 권한 설정 - sudo chmod 666 /dev/ttyUSB0 
+2. grid_map 빌드 오류 - /opt/ros/humble/include/grid_map_core/grid_map_core -> /opt/ros/humble/include/grid_map_core/
+3. nmea_navsat_driver - ./install/nmea_navsat_driver/bin -> ./install/nmea_navsat_driver/lib/nmea_navsat_driver 아래에 빌드된 실행 파일 위치 
+
+# CAN 
+ip link show can0 - CAN 이 물리적으로 연결되었는지 확인  
+sudo ip link set can0 up type can bitrate 500000 - 연결 
+sudo apt install can-utils - CAN 관련 패키지 설치 
+candump can0 - 데이터 확인 
+ros2 launch ros2_socketcan socket_can_bridge.launch.xml 
+
+# steering 조작 
+rqt -> message publisher -> /pix_robobus/steering_command 토픽에 아래 데이터 입력 -> 리모트 컨트롤러 self-driving on 
+---
+header:
+  stamp:
+    sec: 0
+    nanosec: 0
+  frame_id: ''
+steer_en_ctrl: true
+steer_angle_target: -200
+steer_angle_speed: 0.0
+check_sum102: 0
+---
+

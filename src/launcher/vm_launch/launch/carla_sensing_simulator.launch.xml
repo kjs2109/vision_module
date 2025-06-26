@@ -2,7 +2,9 @@
 <launch>
     <!-- Essential parameters --> 
     <arg name="use_sim_time" default="true"/> 
-    <arg name="map_path" default="/home/k/vision_module/campus_map/Town01"/>
+    <arg name="carla_map" default="Tukorea"/>
+    <arg name="use_traffic_manager" default="true"/>
+    <arg name="map_path" default="/home/k/vision_module/campus_map/$(var carla_map)"/>
     <arg name="vehicle_model" default="vm_vehicle"/> 
     <arg name="sensor_model" default="vm_sensor_kit"/> 
     <arg name="pointcloud_container_name" default="pointcloud_container"/>
@@ -79,7 +81,8 @@
 
     <!-- Autoware-Carla bridge (Sensing) -->
     <include file="$(find-pkg-share autoware_carla_interface)/autoware_carla_interface.launch.xml">
-        <arg name="carla_map" value="Town01"/>
+        <arg name="carla_map" value="$(var carla_map)"/>
+        <arg name="use_traffic_manager" value="$(var use_traffic_manager)"/>
     </include> 
     <include file="$(find-pkg-share $(var sensor_model)_launch)/launch/sensing.launch.xml">
         <arg name="launch_driver" value="false"/>  <!-- for vehicle velocity converter -->
@@ -101,7 +104,8 @@
         <include file="$(find-pkg-share vm_launch)/launch/components/vm_autoware_api_component.launch.xml"/>
     </group>
 
+    <node pkg="tf2_ros" exec="static_transform_publisher" name="rs16_top_base_link" args="0 0 0 0 0 0 /rs16_top_base_link /rs16_top_base_link_changed "/>
     <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_base" args="0 0 0 0 0 0 /map /base_link"/> -->
-    <!-- <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/carla_sensing_simulation.rviz"/> -->
-    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/perception.rviz"/>
+    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/carla_sensing_simulation.rviz"/>
+    <!-- <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/perception.rviz"/> -->
 </launch>

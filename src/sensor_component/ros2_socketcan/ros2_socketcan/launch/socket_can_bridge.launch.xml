@@ -5,8 +5,8 @@
   <arg name="sender_timeout_sec" default="0.01" />
   <arg name="enable_can_fd" default="false" />
   <arg name="enable_frame_loopback" default="false" />
-  <arg name="from_can_bus_topic" default="from_can_bus" />
-  <arg name="to_can_bus_topic" default="to_can_bus" />
+  <arg name="from_can_bus_topic" default="/can_recv" />
+  <arg name="to_can_bus_topic" default="/can_send" />
   <arg name="use_bus_time" default="false" />
 
   <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_receiver.launch.py">

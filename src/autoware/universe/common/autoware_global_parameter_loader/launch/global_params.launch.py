@@ -20,6 +20,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import SetParameter
 from launch_ros.substitutions import FindPackageShare
+from launch.conditions import IfCondition
 
 
 def launch_setup(context, *args, **kwargs):
@@ -38,6 +39,7 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "vehicle_info_param_file": [vehicle_description_pkg, "/config/vehicle_info.param.yaml"]
         }.items(),
+        condition=IfCondition(LaunchConfiguration("load_vehicle_info"))
     )
 
     return [
@@ -49,6 +51,7 @@ def launch_setup(context, *args, **kwargs):
 def generate_launch_description():
     return LaunchDescription(
         [
+            DeclareLaunchArgument("load_vehicle_info", default_value="true"),
             DeclareLaunchArgument("use_sim_time", default_value="false"),
             OpaqueFunction(function=launch_setup),
         ]

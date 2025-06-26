@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Essential parameters --> 
+    <arg name="use_sim_time" default="false"/> 
+    <arg name="carla_map" default="campus_local"/>
+    <arg name="use_traffic_manager" default="true"/>
+    <arg name="map_path" default="/home/k/vision_module/campus_map/$(var carla_map)"/>
+    <arg name="vehicle_model" default="vm_vehicle"/> 
+    <arg name="sensor_model" default="vm_sensor_kit"/> 
+    <arg name="pointcloud_container_name" default="pointcloud_container"/>
+    <arg name="data_path" default="/home/k/autoware_data"/>
+    <arg name="config_dir" default="$(find-pkg-share $(var sensor_model)_description)/config" description="sensors_calibration.yaml"/>
+
+    <!-- launch module preset --> 
+    <arg name="planning_module_preset" default="default" description="planning module preset"/> 
+    <arg name="control_module_preset" default="default" description="control module preset"/> 
+
+    <!-- Module to be launched -->
+    <arg name="api" default="true" description="launch api"/>
+    <arg name="control" default="false" description="launch control"/>  
+    <arg name="planning" default="false" description="launch planning"/> 
+    <arg name="perception" default="true" description="launch perception"/> 
+    <arg name="localization" default="true" description="launch localization"/> 
+    <arg name="map" default="true" description="launch map"/> 
+    <arg name="system" default="true" description="launch system"/> 
+    <arg name="sensing" default="true" description="launch sensing"/> 
+    <arg name="vehicle" default="true" description="launch vehicle"/> 
+
+    <!-- Perception --> 
+    <arg name="traffic_light_namespace" default="[traffic_light]" description="traffic light recognition namespace"/>
+    <!-- Map --> 
+    <arg name="lanelet2_map_file" default="lanelet2_map.osm"/>
+    <arg name="pointcloud_map_file" default="pointcloud_map.pcd"/>  <!-- pointcloud_map_0.05sample -->
+    <!-- System --> 
+    <arg name="launch_system_monitor" default="false"/> 
+    <arg name="launch_dummy_diag_publisher" default="false"/> 
+    <!-- Sensing --> 
+    <arg name="launch_sensing_driver" default="true"/> 
+    <!-- Vehicle --> 
+    <arg name="launch_vehicle_interface" default="false"/>  <!-- ros2 launch vm_vehicle_launch vehicle_interface.launch.xml 명령어로 따로 실행 -->
+
+
+    <group scoped="false">
+        <include file="$(find-pkg-share autoware_global_parameter_loader)/launch/global_params.launch.py">
+            <arg name="use_sim_time" value="$(var use_sim_time)"/>
+            <arg name="vehicle_model" value="$(var vehicle_model)"/>
+        </include>
+    </group>
+
+    <!-- Pointcloud container -->
+    <include file="$(find-pkg-share vm_launch)/launch/pointcloud_container.launch.py">
+        <arg name="use_multithread" value="true"/>
+        <arg name="container_name" value="$(var pointcloud_container_name)"/>
+    </include>
+
+    <!-- Perception --> 
+    <group if="$(var perception)">
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_perception_component.launch.xml"/>
+    </group>
+
+    <!-- Localization -->
+    <group if="$(var localization)">
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_localization_component.launch.xml">
+            <arg name="loc_config_path" value="$(find-pkg-share vm_launch)/config/localization"/>
+            <arg name="pose_source" value="ndt"/>
+            <arg name="twist_source" value="gyro_odom"/>
+            <arg name="input_pointcloud" value="/sensing/lidar/concatenated/pointcloud"/>
+            <arg name="localization_pointcloud_container_name" value="$(var pointcloud_container_name)"/>
+            <arg name="initial_pose" value="[]"/>
+        </include>
+    </group>
+
+    <!-- Map -->
+    <group if="$(var map)">
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_map_component.launch.xml">
+            <arg name="map_folder" value="$(var map_path)"/>
+            <arg name="lanelet2_map_file" value="$(var lanelet2_map_file)"/>
+            <arg name="pointcloud_map_file" value="$(var pointcloud_map_file)"/>
+        </include> 
+    </group>
+
+    <!-- Sensing -->
+    <group if="$(var sensing)">
+        <include file="$(find-pkg-share $(var sensor_model)_launch)/launch/sensing.launch.xml">
+            <arg name="launch_driver" value="$(var launch_sensing_driver)"/>  <!-- for vehicle velocity converter -->
+            <arg name="visualize" value="false"/>
+        </include>
+    </group>
+    
+    <!-- Vehicle -->
+    <group if="$(var vehicle)">
+        <include file="$(find-pkg-share tier4_vehicle_launch)/launch/vehicle.launch.xml">
+        <arg name="vehicle_model" value="$(var vehicle_model)"/>
+        <arg name="sensor_model" value="$(var sensor_model)"/>
+        <arg name="launch_vehicle_interface" value="$(var launch_vehicle_interface)"/>
+        <arg name="config_dir" value="$(find-pkg-share $(var sensor_model)_description)/config"/>
+        <arg name="raw_vehicle_cmd_converter_param_path" value="$(find-pkg-share vm_launch)/config/vehicle/raw_vehicle_cmd_converter/raw_vehicle_cmd_converter.param.yaml"/>
+        </include>
+    </group>
+
+    <!-- API -->
+    <group if="$(var api)">
+        <include file="$(find-pkg-share vm_launch)/launch/components/vm_autoware_api_component.launch.xml"/>
+    </group>
+
+    <node pkg="tf2_ros" exec="static_transform_publisher" name="rs16_top_base_link" args="0 0 0 0 0 0 /rs16_top_base_link /rs16_top_base_link_changed "/>
+    <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_base" args="99170.6 34976.3 0 0 0 0 /map /base_link"/> -->
+    <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_base" args="0 0 0 0 0 0 /map /base_link"/> -->
+    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/carla_sensing_simulation.rviz"/>
+    <!-- <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share vm_launch)/rviz/perception.rviz"/> -->
+</launch>

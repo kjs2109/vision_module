@@ -4,17 +4,28 @@
 
   <group>
     <!-- Switch topic name -->
-    <let name="navsatfix_topic_name" value="fix"/>
+    <let name="navsatfix_topic_name" value="/sensing/gnss/fix"/>
     <let name="orientation_topic_name" value="/autoware_orientation"/>
 
     <group if="$(var launch_driver)">
-      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/nmea_tcpclient_driver.launch.py" />
+      <!-- <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/nmea_tcpclient_driver.launch.py"/> -->
+      <include file="$(find-pkg-share vm_sensor_kit_launch)/launch/nmea_serial_driver.launch.py"/>
     </group>
 
     <!-- NavSatFix to MGRS Pose -->
     <!-- <include file="$(find-pkg-share autoware_gnss_poser)/launch/gnss_poser.launch.xml">
       <arg name="input_topic_fix" value="$(var navsatfix_topic_name)"/>
       <arg name="input_topic_orientation" value="$(var orientation_topic_name)"/>
+      <arg name="output_topic_gnss_pose" value="pose"/>
+      <arg name="output_topic_gnss_pose_cov" value="pose_with_covariance"/>
+      <arg name="output_topic_gnss_fixed" value="fixed"/>
     </include> -->
+    <include file="$(find-pkg-share autoware_gnss_poser)/launch/gnss_poser.launch.xml">
+      <arg name="input_topic_fix" value="$(var navsatfix_topic_name)"/>
+      <arg name="input_topic_orientation" value="$(var orientation_topic_name)"/>
+      <arg name="output_topic_gnss_pose" value="/sensing/gnss/pose"/>
+      <arg name="output_topic_gnss_pose_cov" value="/sensing/gnss/pose_with_covariance"/>
+      <arg name="output_topic_gnss_fixed" value="/sensing/gnss/fixed"/>
+    </include>
   </group>
 </launch>

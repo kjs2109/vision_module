@@ -31,7 +31,7 @@ def generate_launch_description():
         executable='nmea_tcpclient_driver',
         output='screen',
         parameters=[{
-            "ip": "192.168.1.110",
+            "ip": "192.168.1.102",
             "port": 9904,
             "buffer_size": 4096
         }],
